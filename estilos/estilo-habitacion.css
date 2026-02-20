@@ -1,0 +1,134 @@
+:root {
+    --fondo: #f4f4f4;
+    --primario: #F4E2D1;
+    --secundario: #384533;
+    --verdeClaro: #d2d3c1;
+    --colorLinks: #818c7b;
+    --arcilla: #ab8160;
+    --sombra: rgba(0, 0, 0, 0.1);
+    --sombra-hover: rgba(0, 0, 0, 0.2);
+}
+
+body {
+    font-family: 'Merriweather', serif;
+    font-size: 1.6rem;
+    background-color: var(--fondo);
+    margin: 0;
+    color: #333;
+}
+
+main {
+    margin: 0 auto;
+    padding: 2rem;
+    max-width: 1200px;
+    animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+.texto-habitaciones {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.titulo-habitaciones, .titulo-dinamicas {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--secundario);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.titulo-dinamicas{
+    margin-top: 2rem;
+}
+
+.p-habitaciones {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.habitaciones, .contenedor-habitaciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.habitacion {
+    background-color: var(--primario);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px var(--sombra);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.habitacion:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px var(--sombra-hover);
+}
+
+.habitacion img {
+    width: 100%; 
+    height: 30rem; 
+    object-fit: cover; 
+    border-bottom: 2px solid var(--secundario);
+    margin-bottom: 1rem;
+}
+
+.habitacion h2 {
+    font-size: 2rem;
+    color: var(--secundario);
+    margin: 1rem 0;
+}
+
+.habitacion p {
+    font-size: 1.4rem;
+    color: #555;
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+.habitacion .precio {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--secundario);
+    margin: 1rem 0;
+}
+
+.habitacion .categoria {
+    font-size: 1.2rem;
+    color: #777;
+    font-style: italic;
+}
+
+/* Mensaje si no hay habitaciones */
+.contenedor-habitaciones p {
+    text-align: center;
+    font-size: 1.6rem;
+    color: #888;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .contenedor-habitaciones {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 1rem;
+    }
+
+    .contenedor-habitaciones {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+
+

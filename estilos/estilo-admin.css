@@ -1,0 +1,49 @@
+
+html, body {
+    height: 100%;
+    margin: 0; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+body {
+    width: 100%; 
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    justify-content: flex-start; 
+    padding: 1rem;
+}
+
+.tabla-habitaciones th, .tabla-habitaciones td {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    word-wrap: break-word; 
+}
+
+footer {
+    margin-top: auto; 
+    width: 100%;
+    text-align: center; 
+    padding: 1rem; 
+}
+
+
+@media (max-width: 768px) {
+    .tabla-habitaciones {
+        font-size: 0.9rem; 
+    }
+
+    .tabla-habitaciones th, .tabla-habitaciones td {
+        padding: 0.5rem; 
+    }
+}
+
+
+
+

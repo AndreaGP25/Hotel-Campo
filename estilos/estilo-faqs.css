@@ -1,0 +1,298 @@
+:root {
+    --fondo: #f4f4f4;
+    --primario: #F4E2D1;
+    --secundario: #384533;
+    --verdeClaro: #d2d3c1;
+    --colorLinks: #818c7b;
+    --arcilla: #ab8160;
+	--textoClaro: #555;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Merriweather';
+    font-size: 1.6rem;
+    background-color: var(--fondo);
+}
+
+header {
+    background-color: var(--secundario);
+    padding: 1.5rem 2rem;
+}
+
+
+h1 {
+    color: var(--primario);
+    font-style: italic;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    margin: 0;
+}
+
+.margen {
+    margin: 0 2rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.opciones ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.opciones ul li a {
+    color: var(--colorLinks);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    transition: color 0.3s;
+}
+
+.opciones ul li a:hover {
+    color: var(--primario);
+}
+
+.navbar-brand {
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--verdeClaro);
+    font-style: italic;
+}
+
+.mayusculas {
+    text-transform: uppercase;
+}
+
+.botones {
+    border: 0.2rem solid var(--arcilla);
+    border-radius: 1rem;
+    color: var(--primario);
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-left: 1rem;
+    text-align: center;
+}
+
+.botones:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+#btn-iniciar {
+    background-color: var(--secundario);
+    color: var(--primario);
+}
+
+#btn-iniciar:hover {
+    background-color: var(--arcilla);
+}
+
+#btn-registrar {
+    background-color: var(--arcilla);
+    color: var(--primario);
+    
+}
+
+#btn-registrar:hover {
+    background-color: var(--secundario);
+}
+.d-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;           
+}
+
+/* carrusel */
+.shadow {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.carousel-img-altura {
+    height: 40rem;
+    object-fit: cover;
+}
+
+.botones-carrusel {
+    border: 0.2rem solid var(--arcilla);
+    background-color: var(--arcilla);
+    border-radius: 1rem;
+    color: var(--primario);
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 760px) {
+    .opciones ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .d-flex {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .navegacion {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+}
+
+/* footer */
+
+footer {
+    background-color: var(--secundario);
+    padding: 1.5rem 2rem;
+}
+
+.centrar-footer {
+    justify-content: center;
+}
+
+#seccion-final {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+#seccion-final p {
+    color: var(--colorLinks);
+    font-size: 1.5rem;
+}
+
+#iconos li {
+    display: inline;
+}
+
+.icono {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.5rem;
+    fill: var(--colorLinks);
+}
+
+#iconos li:last-child .icono {
+    margin-right: 0;
+}
+
+/* ----------------------- Sección FAQ ------------------------*/
+.faq-wrapper {
+  position: relative;
+  background: url('../imagenes/faq.jpg') no-repeat center center;
+  background-size: cover;
+  padding: 5rem 1rem;
+}
+
+.faq-wrapper:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 1;
+}
+
+.faq-section, .faq-contacto-section {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4rem; 
+}
+
+.faq-container, .faq-contacto-container {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  max-width: 80rem;
+  width: 90%;
+  padding: 2rem;
+}
+
+.faq-contacto-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 60rem;
+}
+
+.faq-container h2, .faq-contacto-container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--textoClaro);
+  text-align: center;
+}
+
+.accordion-button {
+  background-color: white;
+  color: var(--textoClaro);
+  border: 0.1rem solid #ccc;
+  font-size: 1.4rem;
+  transition: var(--secundario) 0.3s ease;
+}
+
+.accordion-button:hover {
+  background-color: var(--fondo);
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: var(--verdeClaro);
+  color: var(--secundario);
+}
+
+.accordion-body {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--textoClaro);
+}
+
+.contacto-titulo {
+  font-size: 2.5rem;
+  color: var(--secundario);
+  margin-bottom: 1.5rem;
+}
+
+.contacto-texto {
+  font-size: 1.6rem;
+  color: var(--textoClaro);
+  margin-bottom: 2rem;
+}
+
+.contacto-boton {
+  background-color: var(--arcilla);
+  color: var(--primario);
+  padding: 0.8rem 2rem;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.contacto-boton:hover {
+  background-color: var(--secundario);
+  color: var(--primario);
+  transform: scale(1.05);
+}
+
+/* ----------------------- Fin Sección FAQ ------------------------*/

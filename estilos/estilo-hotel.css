@@ -1,0 +1,95 @@
+
+:root {
+    --fondo: #f4f4f4;
+    --primario: #F4E2D1;
+    --secundario: #384533;
+    --verdeClaro: #d2d3c1;
+    --colorLinks: #818c7b;
+    --arcilla: #ab8160;
+    --grisOscuro: #515151;
+    --blanco: #ffffff;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+html, body {
+    height: 100%;
+    margin: 0; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+
+footer {
+    margin-top: auto; 
+    width: 100%;
+    text-align: center; 
+    padding: 1rem; 
+}
+
+/* Fuentes */
+body {
+    color: var(--grisOscuro);
+    line-height: 1.6;
+    background-image: url('../imagenes/fondo-formulario.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+
+/* Estilo para las secciones */
+section {
+    padding: 40px 20px;
+    margin: 20px auto;
+    max-width: 1000px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Introducción */
+.introduccion {
+    text-align: center;
+}
+
+.introduccion h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--secundario);
+    margin-bottom: 2rem;
+}
+
+.introduccion p {
+    color: var();
+    line-height: 1.6;
+}
+
+
+
+/* Filosofía */
+.nuestra-filosofia h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.nuestra-filosofia p {
+    color: var(--grisOscuro);
+    line-height: 1.6;
+}
+
+
+
+
+
+
+
+
+
