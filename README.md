@@ -8,21 +8,21 @@ El sistema permite a los usuarios ver las habitaciones disponibles, realizar res
 
 
 #### Usuario
--Ver habitaciones disponibles
--Hacer reservas
--Explorar los servicios del hotel
--Galería de imágenes y sección de preguntas frecuentes
--Inicio de sesión y recuperación de contraseña
+- Ver habitaciones disponibles
+- Hacer reservas
+- Explorar los servicios del hotel
+- Galería de imágenes y sección de preguntas frecuentes
+- Inicio de sesión y recuperación de contraseña
 
 #### Panel de administración
--Crear, actualizar y eliminar habitaciones (CRUD)
--Gestionar la disponibilidad de habitaciones
--Ver información de reservas
+- Crear, actualizar y eliminar habitaciones (CRUD)
+- Gestionar la disponibilidad de habitaciones
+- Ver información de reservas
 
 #### Tecnologías utilizadas
--PHP
--HTML5
--CSS3
--JavaScript
--MySQL 
--XAMPP 
+- PHP
+- HTML5
+- CSS3
+- JavaScript
+- MySQL 
+- XAMPP 
