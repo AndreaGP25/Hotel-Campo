@@ -3,6 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
+-- Tiempo de generación: 08-04-2026 a las 04:37:27
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -42,7 +43,7 @@ CREATE TABLE `habitaciones` (
 --
 
 INSERT INTO `habitaciones` (`id`, `titulo`, `precio`, `imagen`, `descripcion`, `fecha_creacion`, `categoria`, `disponibilidad`) VALUES
-(10, 'Habitación caracol', 1400.00, 'actualizaciones/habitacion1.jpg', 'Habitacion con balcon', '2024-12-02 09:17:33', 'Estandar', 0),
+(10, 'Habitación caracol', 1400.00, 'actualizaciones/habitacion1.jpg', 'Habitacion con balcon', '2024-12-02 09:17:33', 'Estandar', 1),
 (11, 'Habitación árbol', 1200.00, 'actualizaciones/arbol.jpg', 'Habitación con balcón', '2024-12-02 21:20:49', 'Estandar', 1),
 (12, 'Habitación campo', 1300.00, 'actualizaciones/habitacioncampo.jpg', 'Amplia habitación con balcón', '2024-12-02 21:25:57', 'Estandar', 1);
 
@@ -102,14 +103,14 @@ INSERT INTO `reservaciones` (`id`, `habitacion_id`, `nombre`, `email`, `telefono
 
 CREATE TABLE `servicios` (
   `id` int(11) NOT NULL,
-  `nombre_servicio` varchar(255) NOT NULL
+  `titulo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `servicios`
 --
 
-INSERT INTO `servicios` (`id`, `nombre_servicio`) VALUES
+INSERT INTO `servicios` (`id`, `titulo`) VALUES
 (1, 'Bicicletas'),
 (2, 'Senderismo Guiado'),
 (3, 'Spa y Masajes'),
@@ -193,7 +194,13 @@ INSERT INTO `sesiones` (`id_sesion`, `id_usuario`, `token`, `fecha_inicio`, `fec
 (43, 18, '2e19dbb8d77961f50875688c03490b2107c305b88f833d15fcdb6b5c539a3913', '2024-12-03 02:40:50', NULL, '::1'),
 (44, 18, 'd2f4da2dbf51d69dddaf7e07bc60707abe0fe6460ec278349b3cae8eb851a182', '2024-12-03 03:10:01', NULL, '::1'),
 (45, 18, '608ea234d8e956f154e5d8bbf893436cd3b33e11ae2e4716fd8c2478c8ba7b81', '2024-12-03 03:22:54', '2024-12-03 04:13:24', '::1'),
-(46, 20, '06613a18afb48cb3fe058aa7dd56e13aadaaa2677256955f29c6ff688e8ca8c3', '2024-12-03 04:13:50', '2024-12-03 04:46:48', '::1');
+(46, 20, '06613a18afb48cb3fe058aa7dd56e13aadaaa2677256955f29c6ff688e8ca8c3', '2024-12-03 04:13:50', '2024-12-03 04:46:48', '::1'),
+(47, 20, 'db7146ab79573485be63c0436648f59a11c622cfc68b6424c4329ca6d1b022fd', '2026-01-20 09:40:39', '2026-01-20 09:41:13', '::1'),
+(48, 21, 'f7ce1c392f53412495799bccf4188a553b013b00aa1356389249650353ea94d1', '2026-04-07 08:36:05', NULL, '::1'),
+(49, 21, 'd0ffd2a1b43d744700f9c9ced74ef78bc8929c1a428b3e5579bc3e30f3eec0c6', '2026-04-08 08:58:06', NULL, '::1'),
+(50, 21, '46cb0527d7d0283b0235b4cb9c77d25951294c77413cb8e84f672effbddf9efd', '2026-04-08 10:05:38', NULL, '127.0.0.1'),
+(51, 21, 'a6857af54c6f029d842e4e5125f7b015c0073d38420f71d0e49315ffb1754da5', '2026-04-08 10:10:53', NULL, '::1'),
+(52, 21, '3d9dd4ccef8f27ebfeddc6cb87fb71da25507dd70df013ad6e88f39efd62ae6a', '2026-04-08 10:15:56', NULL, '::1');
 
 -- --------------------------------------------------------
 
@@ -222,7 +229,8 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `password`, `rol`, `tel
 (13, 'Emiliano Pineda', 'fridapineda348@gmail.com', '$2y$10$9v0UQOFfouemPNLlDD2Yie3usl6ns64e1k7dCm2nijtHs/d7pcZsG', 'prospecto', '998123456', '2024-11-17 08:51:56', 1),
 (17, 'Emiliano Alvarado', 'emi@gmail.com', '$2y$10$7l6dSbbBQ1XGaPLb0YroS.aQqAbg7ZXVoanDP67rRVPorxzpoP/T.', 'prospecto', '9991231234', '2024-11-17 18:05:46', 1),
 (18, 'Mariana Pineda', 'mar@gmail.com', '$2y$10$Rnkb5PMb9KRhqbUvJGg6heK53Mc2KgrrT3JSw82wimfiZ7d8wzY5y', 'prospecto', '997812738', '2024-11-17 18:36:06', 1),
-(20, 'Administrador', 'admin@hotel.com', '$2y$10$otf98knh7cuWzl.GdJQ...Pl6e9D97lz/G0vrlYfBZRONS/GGHjhy', 'admin', '1234567890', '2024-12-01 01:57:25', 1);
+(20, 'Administrador', 'admin@hotel.com', '$2y$10$otf98knh7cuWzl.GdJQ...Pl6e9D97lz/G0vrlYfBZRONS/GGHjhy', 'admin', '1234567890', '2024-12-01 01:57:25', 1),
+(21, 'Mimi', 'mimi@hotel.com', '$2y$10$Eb17KgfoFGSEraftlqjWT.O3HhtVrtpM2wf5AbGradoQNUx9asSvy', 'prospecto', '1234567890', '2026-04-07 00:35:55', 1);
 
 --
 -- Índices para tablas volcadas
@@ -301,13 +309,13 @@ ALTER TABLE `servicios`
 -- AUTO_INCREMENT de la tabla `sesiones`
 --
 ALTER TABLE `sesiones`
-  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Restricciones para tablas volcadas
