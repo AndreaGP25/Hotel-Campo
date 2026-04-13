@@ -3,17 +3,45 @@ include $_SERVER['DOCUMENT_ROOT'] . '/campo/config.inc.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['query'])) {
     $query = trim($_GET['query']);
-    $query = '%' . $query . '%';
+    $busqueda = '%' . $query . '%';
+    $resultados = [];
 
     try {
-        $sql = "SELECT titulo FROM habitaciones WHERE titulo LIKE :query LIMIT 5";
+        // Buscar en habitaciones
+        $sql = "SELECT titulo AS nombre, 'Habitación' AS tipo, id FROM habitaciones 
+                WHERE titulo LIKE :query AND disponibilidad = 1 LIMIT 4";
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':query', $query, PDO::PARAM_STR);
+        $stmt->bindParam(':query', $busqueda, PDO::PARAM_STR);
         $stmt->execute();
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $resultados[] = [
+                'nombre' => $row['nombre'],
+                'tipo'   => $row['tipo'],
+                'url'    => '/campo/habitacion.php'
+            ];
+        }
 
-        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Buscar en servicios
+        $sql = "SELECT titulo AS nombre, 'Servicio' AS tipo FROM servicios 
+                WHERE titulo LIKE :query LIMIT 4";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':query', $busqueda, PDO::PARAM_STR);
+        $stmt->execute();
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $resultados[] = [
+                'nombre' => $row['nombre'],
+                'tipo'   => $row['tipo'],
+                'url'    => '/campo/servicios.php'
+            ];
+        }
+
+        // Limitar total a 7 resultados
+        $resultados = array_slice($resultados, 0, 7);
+        header('Content-Type: application/json');
         echo json_encode($resultados);
+
     } catch (PDOException $e) {
-        echo json_encode(['error' => 'Error en la búsqueda: ' . $e->getMessage()]);
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'Error: ' . $e->getMessage()]);
     }
 }
