@@ -87,8 +87,9 @@ try {
                     </li>
                 </ul>
 
-                <form class=" col-lg-auto mb-3 mb-lg-0 me-lg-2" role="search">
+                <form class="col-lg-auto mb-3 mb-lg-0 me-lg-2 position-relative" role="search">
                     <input type="search" id="busqueda" class="form-control" placeholder="Buscar..." aria-label="Search">
+                    <ul id="resultados" class="dropdown-menu"></ul>
                 </form>
 
                 <div class="d-flex" role="search">
@@ -214,6 +215,8 @@ try {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    
+    <script src="../funciones/script_buscar.js"></script>
 </body>
 
 </html>
