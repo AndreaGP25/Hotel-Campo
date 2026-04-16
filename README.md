@@ -25,4 +25,12 @@ El sistema permite a los usuarios ver las habitaciones disponibles, realizar res
 - CSS3
 - JavaScript
 - MySQL 
-- XAMPP 
+- XAMPP
+
+### Versiones
+
+| Nombre                 | Fecha de lanzamiento |
+|------------------------|----------------------|
+| HotelRefugioValle_1.0.0| 20/02/2026           |
+| HotelRefugioValle_1.0.1| 15/04/2026           |
+
