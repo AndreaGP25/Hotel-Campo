@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-04-2026 a las 04:37:27
+-- Tiempo de generación: 20-04-2026 a las 10:11:38
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -200,7 +200,50 @@ INSERT INTO `sesiones` (`id_sesion`, `id_usuario`, `token`, `fecha_inicio`, `fec
 (49, 21, 'd0ffd2a1b43d744700f9c9ced74ef78bc8929c1a428b3e5579bc3e30f3eec0c6', '2026-04-08 08:58:06', NULL, '::1'),
 (50, 21, '46cb0527d7d0283b0235b4cb9c77d25951294c77413cb8e84f672effbddf9efd', '2026-04-08 10:05:38', NULL, '127.0.0.1'),
 (51, 21, 'a6857af54c6f029d842e4e5125f7b015c0073d38420f71d0e49315ffb1754da5', '2026-04-08 10:10:53', NULL, '::1'),
-(52, 21, '3d9dd4ccef8f27ebfeddc6cb87fb71da25507dd70df013ad6e88f39efd62ae6a', '2026-04-08 10:15:56', NULL, '::1');
+(52, 21, '3d9dd4ccef8f27ebfeddc6cb87fb71da25507dd70df013ad6e88f39efd62ae6a', '2026-04-08 10:15:56', NULL, '::1'),
+(53, 21, '63da925ed934a94c3116968d2c1c8f99113273446013ecc6a5e56ada76623967', '2026-04-08 10:59:51', NULL, '127.0.0.1'),
+(54, 21, '72184201f5fd97c34a3724fb12a4828d1060b51a3c8753a492ce13dbd229516a', '2026-04-13 11:53:56', '2026-04-13 12:00:29', '::1'),
+(55, 21, '35ab8e39e9acfe408a99e3844632ddfd3d1f97ec35813e1e9293f1f01dd18b6c', '2026-04-13 12:00:39', NULL, '::1'),
+(56, 21, '15fa6c351d27cb701e9e9c65a308a331bd36de4fbafa905cc27c75f0a70f13ec', '2026-04-13 12:02:28', NULL, '127.0.0.1'),
+(57, 21, '6b8dc66d76ecd0862e5db6b78a7015f2dae85ce7a144b235a88a874518bb08af', '2026-04-13 12:03:32', NULL, '127.0.0.1'),
+(58, 20, 'fdd79734a18c5c588396a279ae062a1f00703055b59644a0de688d6b6115f437', '2026-04-15 10:50:03', '2026-04-15 10:58:13', '::1'),
+(59, 20, '1d00c05f54c7bc833111349f003ec5167d44a66c7b9ebe1c4e6c682e546c1d30', '2026-04-15 10:58:37', '2026-04-15 10:59:02', '127.0.0.1'),
+(60, 21, 'ca3b3f6e3a34e3eb4dfbf5d7ba37e0a32673a57437d8fccdef5ac90d82c5aef5', '2026-04-15 10:59:17', '2026-04-15 10:59:21', '127.0.0.1'),
+(61, 20, '0de00934f9420820059c8c2ff603b4cc73855ebe3bca7292479924e327d21000', '2026-04-15 11:00:01', '2026-04-15 12:21:09', '127.0.0.1'),
+(62, 20, '105a12393e3fbdae80c0e66f773110c5bb50c4e75386299a5da4fc222abe94a2', '2026-04-15 13:25:35', NULL, '::1'),
+(66, 35, '28609a95bcc879eb956a454a3ec7f42e9a48c4376c7a51db6d712ced683425da', '2026-04-17 14:11:24', '2026-04-17 14:14:27', '::1'),
+(67, 35, 'ebf475e2087dcef089327c3d7099dad0d07376a0a2f15d16a62e66734e6e29a6', '2026-04-17 14:49:50', '2026-04-17 14:49:52', '::1'),
+(68, 35, 'b7632a079e739a68d7282f9c8cc0004699dbe178eb1b4afb96c7d43ae0f36d85', '2026-04-18 02:53:40', '2026-04-18 02:53:42', '::1'),
+(69, 35, 'da19bc3809f3483dd5a373b440df924e8ac63a0b3a039315827d2088ce83cc5b', '2026-04-18 03:39:49', '2026-04-18 03:39:50', '::1');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tokens_recuperacion`
+--
+
+CREATE TABLE `tokens_recuperacion` (
+  `id` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `expira_en` datetime NOT NULL,
+  `usado` tinyint(1) NOT NULL DEFAULT 0,
+  `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tokens_recuperacion`
+--
+
+INSERT INTO `tokens_recuperacion` (`id`, `id_usuario`, `token`, `expira_en`, `usado`, `creado_en`) VALUES
+(1, 21, '31b867655d447b96fe6cae9858d3d336d1889f150fef57ac1ad1dd4d138d0ee8', '2026-04-17 04:28:47', 0, '2026-04-17 01:58:47'),
+(2, 35, '204da60761de83d97c88042d0a477118f744c43db8bc85fee2f2c2d485c259e2', '2026-04-17 08:55:51', 0, '2026-04-17 06:25:51'),
+(3, 35, 'a0571b5716abf683164577463eb5076db0aa6721ee11cd0afab240cd8797779a', '2026-04-17 09:08:02', 0, '2026-04-17 06:38:02'),
+(4, 35, '323723e1e8c7fdb98d00dbae76e27976bd2fdc5012731d56f1e4539092e2dede', '2026-04-17 09:17:26', 0, '2026-04-17 06:47:26'),
+(5, 35, '31e0664e7b7ec5b521c3282fc06a827b6ac630413561add145299dd4757d6170', '2026-04-17 09:18:16', 1, '2026-04-17 06:48:16'),
+(6, 35, '7d4aeb9b1bd046ad0ebe6d0de4a69a53c6b255b91b0133f259c61e87a0317e15', '2026-04-17 09:18:19', 0, '2026-04-17 06:48:19'),
+(7, 35, 'bd5f7819ae6c6d522314bdc5bf585e682cc18cd6e7fa70659f0b7ec404c318d3', '2026-04-17 21:22:41', 1, '2026-04-17 18:52:41'),
+(8, 35, '9a50ecb04d07a3d7619f6a65df85feef76ac606c2b892ae4f900088371bc7317', '2026-04-17 21:26:33', 0, '2026-04-17 18:56:33');
 
 -- --------------------------------------------------------
 
@@ -216,21 +259,24 @@ CREATE TABLE `usuarios` (
   `rol` enum('admin','huésped','prospecto') NOT NULL DEFAULT 'prospecto',
   `telefono` varchar(12) NOT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
-  `activo` tinyint(1) NOT NULL DEFAULT 1
+  `activo` tinyint(1) NOT NULL DEFAULT 1,
+  `verificado` tinyint(1) NOT NULL DEFAULT 0,
+  `codigo_verificacion` varchar(6) DEFAULT NULL,
+  `codigo_expira` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `password`, `rol`, `telefono`, `fecha_registro`, `activo`) VALUES
-(1, 'Frida', 'a20214993@alumnos.uady.mx', '$2y$10$oaRW16ESkizCuqhhSk.M.uBrNrKihabFzh34eEMeOR8Ucf0uT3X0a', 'prospecto', '234567', '2024-11-17 07:59:43', 1),
-(7, 'fri', 'jjak@gmail.com', '$2y$10$s2vCke7cA/Cf/BNyivNNG.JQrYZG/O.Nr9f5IT7iba6Eoff2ySgR2', 'prospecto', '997812738', '2024-11-17 08:22:47', 1),
-(13, 'Emiliano Pineda', 'fridapineda348@gmail.com', '$2y$10$9v0UQOFfouemPNLlDD2Yie3usl6ns64e1k7dCm2nijtHs/d7pcZsG', 'prospecto', '998123456', '2024-11-17 08:51:56', 1),
-(17, 'Emiliano Alvarado', 'emi@gmail.com', '$2y$10$7l6dSbbBQ1XGaPLb0YroS.aQqAbg7ZXVoanDP67rRVPorxzpoP/T.', 'prospecto', '9991231234', '2024-11-17 18:05:46', 1),
-(18, 'Mariana Pineda', 'mar@gmail.com', '$2y$10$Rnkb5PMb9KRhqbUvJGg6heK53Mc2KgrrT3JSw82wimfiZ7d8wzY5y', 'prospecto', '997812738', '2024-11-17 18:36:06', 1),
-(20, 'Administrador', 'admin@hotel.com', '$2y$10$otf98knh7cuWzl.GdJQ...Pl6e9D97lz/G0vrlYfBZRONS/GGHjhy', 'admin', '1234567890', '2024-12-01 01:57:25', 1),
-(21, 'Mimi', 'mimi@hotel.com', '$2y$10$Eb17KgfoFGSEraftlqjWT.O3HhtVrtpM2wf5AbGradoQNUx9asSvy', 'prospecto', '1234567890', '2026-04-07 00:35:55', 1);
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `password`, `rol`, `telefono`, `fecha_registro`, `activo`, `verificado`, `codigo_verificacion`, `codigo_expira`) VALUES
+(1, 'Frida', 'a20214993@alumnos.uady.mx', '$2y$10$oaRW16ESkizCuqhhSk.M.uBrNrKihabFzh34eEMeOR8Ucf0uT3X0a', 'prospecto', '234567', '2024-11-17 07:59:43', 1, 1, NULL, NULL),
+(7, 'fri', 'jjak@gmail.com', '$2y$10$s2vCke7cA/Cf/BNyivNNG.JQrYZG/O.Nr9f5IT7iba6Eoff2ySgR2', 'prospecto', '997812738', '2024-11-17 08:22:47', 1, 1, NULL, NULL),
+(13, 'Emiliano Pineda', 'fridapineda348@gmail.com', '$2y$10$9v0UQOFfouemPNLlDD2Yie3usl6ns64e1k7dCm2nijtHs/d7pcZsG', 'prospecto', '998123456', '2024-11-17 08:51:56', 1, 1, NULL, NULL),
+(17, 'Emiliano Alvarado', 'emi@gmail.com', '$2y$10$7l6dSbbBQ1XGaPLb0YroS.aQqAbg7ZXVoanDP67rRVPorxzpoP/T.', 'prospecto', '9991231234', '2024-11-17 18:05:46', 1, 1, NULL, NULL),
+(18, 'Mariana Pineda', 'mar@gmail.com', '$2y$10$Rnkb5PMb9KRhqbUvJGg6heK53Mc2KgrrT3JSw82wimfiZ7d8wzY5y', 'prospecto', '997812738', '2024-11-17 18:36:06', 1, 1, NULL, NULL),
+(20, 'Administrador', 'admin@hotel.com', '$2y$10$otf98knh7cuWzl.GdJQ...Pl6e9D97lz/G0vrlYfBZRONS/GGHjhy', 'admin', '1234567890', '2024-12-01 01:57:25', 1, 1, NULL, NULL),
+(36, 'mimi', 'bttl.breaker@gmail.com', '$2y$10$.BnIkkjQEshDCV.bmeW5xO0FLYYc5PqHQlpXCRQTyNFdrQeO02QqG', 'prospecto', '2222222222', '2026-04-17 19:43:44', 1, 0, NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -271,6 +317,14 @@ ALTER TABLE `sesiones`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
+-- Indices de la tabla `tokens_recuperacion`
+--
+ALTER TABLE `tokens_recuperacion`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `token` (`token`),
+  ADD KEY `fk_token_usuario` (`id_usuario`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -309,13 +363,19 @@ ALTER TABLE `servicios`
 -- AUTO_INCREMENT de la tabla `sesiones`
 --
 ALTER TABLE `sesiones`
-  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+
+--
+-- AUTO_INCREMENT de la tabla `tokens_recuperacion`
+--
+ALTER TABLE `tokens_recuperacion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Restricciones para tablas volcadas
@@ -338,6 +398,12 @@ ALTER TABLE `reservaciones`
 --
 ALTER TABLE `sesiones`
   ADD CONSTRAINT `sesiones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `tokens_recuperacion`
+--
+ALTER TABLE `tokens_recuperacion`
+  ADD CONSTRAINT `fk_token_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
