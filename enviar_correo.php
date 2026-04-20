@@ -1,20 +1,11 @@
 <?php
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require $_SERVER['DOCUMENT_ROOT'] . '/campo/lib/PHPMailer/src/Exception.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/campo/lib/PHPMailer/src/PHPMailer.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/campo/lib/PHPMailer/src/SMTP.php';
-
-define('SMTP_HOST',     'smtp.mailtrap.io');   // o smtp.gmail.com
-define('SMTP_USUARIO',  'tu_usuario_smtp');
-define('SMTP_CLAVE',    'tu_clave_smtp');
-define('SMTP_PUERTO',   2525);                 // 587 para Gmail TLS
-define('CORREO_REMITE', 'noreply@hotelrefugiodelvalle.com');
-define('NOMBRE_HOTEL',  'Hotel Refugio del Valle');
-
+require $_SERVER['DOCUMENT_ROOT'] . '/campo/libs/PHPMailer/src/Exception.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/campo/libs/PHPMailer/src/PHPMailer.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/campo/libs/PHPMailer/src/SMTP.php';
 
 /**
  * Envía un correo HTML usando PHPMailer.
@@ -54,7 +45,6 @@ function enviarCorreo(string $destinatario, string $nombre, string $asunto, stri
         return true;
 
     } catch (Exception $e) {
-        // En producción: loguea el error en vez de mostrarlo
         error_log('[Hotel Correo] Error al enviar a ' . $destinatario . ': ' . $mail->ErrorInfo);
         return false;
     }
@@ -195,3 +185,4 @@ function plantillaRecuperacion(string $nombre, string $enlace): string
     </body>
     </html>";
 }
+?>

@@ -1,17 +1,17 @@
 <?php
-
 include 'config.inc.php';
+include 'enviar_correo.php';
 session_start();
 
 $mensaje = '';
 $mostrar_modal = false;
 
-// 1. PROCESAR SOLICITUD DE ENLACE (POST)
+// PROCESAR SOLICITUD DE ENLACE
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     
-    // Solo permite recuperacion a usuarios verificados
-    $stmt = $conn->prepare("SELECT id_usuario FROM usuarios WHERE email = ? AND verificado = 1");
+    // Obtener el ID y el nombre del usuario solo si está verificado
+    $stmt = $conn->prepare("SELECT id_usuario, nombre FROM usuarios WHERE email = ? AND verificado = 1");
     $stmt->execute([$email]);
     $user = $stmt->fetch();
 
@@ -19,17 +19,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
         $token = bin2hex(random_bytes(32));
         $expira = date('Y-m-d H:i:s', strtotime('+30 minutes'));
         
+        // Guardar token en la base de datos
         $stmt = $conn->prepare("INSERT INTO tokens_recuperacion (id_usuario, token, expira_en) VALUES (?, ?, ?)");
         $stmt->execute([$user['id_usuario'], $token, $expira]);
         
-        $mensaje = "Si ese correo está registrado recibirás un enlace en unos minutos. Revisa también tu carpeta de spam.";
-        $mostrar_modal = true; 
+        // Enviar el url de recuperación
+        $enlace = "http://" . $_SERVER['HTTP_HOST'] . "/campo/recuperar_contrasena.php?token=" . $token;
+        $html = plantillaRecuperacion($user['nombre'], $enlace);
+        $enviado = enviarCorreo($email, $user['nombre'], 'Restablece tu contraseña — Hotel Refugio del Valle', $html);
+
+        if ($enviado) {
+            $mensaje = "Si ese correo está registrado recibirás un enlace en unos minutos. Revisa también tu carpeta de spam.";
+            $mostrar_modal = true; 
+        } else {
+            $mensaje = "Hubo un error al enviar el correo. Por favor, intenta más tarde.";
+        }
     } else {
         $mensaje = "Si ese correo está registrado recibirás un enlace en unos minutos.";
     }
 }
 
-// 2. PROCESAR VALIDACIÓN DE TOKEN (GET)
+// PROCESAR VALIDACIÓN DE TOKEN
 if (isset($_GET['token'])) {
     $token_input = $_GET['token'];
     
@@ -101,20 +111,6 @@ if (isset($_GET['token'])) {
                 <button type="submit" class="btn-dorado">GUARDAR NUEVA CONTRASEÑA</button>
             </form>
         <?php endif; ?>
-    </div>
-
-    <div id="modalSeguridad" class="modal">
-        <div class="modal-content">
-            <h3 style="color: #1a3a2a;">Ingresar token de seguridad</h3>
-            <p style="font-size: 13px; color: #666;">Por seguridad, pegue el código de validación generado para continuar con el restablecimiento.</p>
-            
-            <form method="GET">
-                <input type="text" name="token" class="input-token" placeholder="Pegue el token aquí..." required>
-                <button type="submit" class="btn-dorado">CONTINUAR</button>
-            </form>
-            <button onclick="document.getElementById('modalSeguridad').style.display='none'" 
-                    style="background: none; border: none; color: #999; margin-top: 15px; cursor: pointer; font-size: 12px;">Cerrar</button>
-        </div>
     </div>
 
 </body>

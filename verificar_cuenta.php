@@ -1,61 +1,64 @@
 <?php
-
 session_start();
 include 'config.inc.php';
 include 'enviar_correo.php';
 
-// Recupera el correo de la sesión para mostrarlo en la interfaz
 $email_usuario = $_SESSION['email_pendiente_verificacion'] ?? 'tu correo';
-
 $mensaje = '';
 $tipo    = ''; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    //Logica de Reenvío
+    // --- LÓGICA DE REENVÍO ---
     if (isset($_POST['reenviar'])) {
         if (!$email_usuario || $email_usuario === 'tu correo') {
             $mensaje = 'Sesión expirada. Por favor regístrate de nuevo.';
             $tipo    = 'error';
         } else {
-            // Genera nuevo codigo en la BD
             $nuevo_codigo = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
             $nueva_expira = date('Y-m-d H:i:s', strtotime('+15 minutes'));
 
             $stmt = $conn->prepare("UPDATE usuarios SET codigo_verificacion = ?, codigo_expira = ? WHERE email = ? AND verificado = 0");
             $stmt->execute([$nuevo_codigo, $nueva_expira, $email_usuario]);
-            
-            $mensaje = 'Se ha reenviado un nuevo código a su correo.';
-            $tipo = 'exito';
+
+            $stmtNombre = $conn->prepare("SELECT nombre FROM usuarios WHERE email = ?");
+            $stmtNombre->execute([$email_usuario]);
+            $fila = $stmtNombre->fetch(PDO::FETCH_ASSOC);
+            $nombre_usuario = $fila ? $fila['nombre'] : 'Usuario';
+
+            $html = plantillaVerificacion($nombre_usuario, $nuevo_codigo);
+            $enviado = enviarCorreo($email_usuario, $nombre_usuario, 'Nuevo código de verificación — Hotel Refugio del Valle', $html);
+
+            $mensaje = $enviado ? 'Se ha reenviado un nuevo código.' : 'Error al enviar.';
+            $tipo = $enviado ? 'exito' : 'error';
         }
     } 
-    //Lógica de Verificación
+    // --- LÓGICA DE VERIFICACIÓN (Aquí estaba el error) ---
     else {
-        $codigo_input = trim($_POST['codigo_completo'] ?? '');
+        $codigo_input = $_POST['codigo_completo'] ?? '';
 
-        if (strlen($codigo_input) !== 6) {
-            $mensaje = 'Por favor, ingresa los 6 dígitos.';
+        $stmt = $conn->prepare("SELECT id_usuario, codigo_verificacion, codigo_expira FROM usuarios WHERE email = ? AND verificado = 0");
+        $stmt->execute([$email_usuario]);
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$usuario) {
+            $mensaje = 'No hay una cuenta pendiente para este correo.';
+            $tipo    = 'error';
+        } elseif ($usuario['codigo_verificacion'] !== $codigo_input) {
+            $mensaje = 'El código ingresado es incorrecto.';
+            $tipo    = 'error';
+        } elseif (new DateTime() > new DateTime($usuario['codigo_expira'])) {
+            $mensaje = 'El código ha expirado. Solicita uno nuevo.';
             $tipo    = 'error';
         } else {
-            $stmt = $conn->prepare("SELECT id_usuario, codigo_verificacion FROM usuarios WHERE email = ? AND verificado = 0");
-            $stmt->execute([$email_usuario]);
-            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+            // ÉXITO: Marcamos como verificado
+            $upd = $conn->prepare("UPDATE usuarios SET verificado = 1, codigo_verificacion = NULL, codigo_expira = NULL WHERE id_usuario = ?");
+            $upd->execute([$usuario['id_usuario']]);
 
-            if (!$usuario) {
-                $mensaje = 'No se encontró una cuenta pendiente de verificación.';
-                $tipo    = 'error';
-            } elseif ($usuario['codigo_verificacion'] !== $codigo_input) {
-                $mensaje = 'El código ingresado es incorrecto.';
-                $tipo    = 'error';
-            } else {
-                $upd = $conn->prepare("UPDATE usuarios SET verificado = 1, codigo_verificacion = NULL, codigo_expira = NULL WHERE id_usuario = ?");
-                $upd->execute([$usuario['id_usuario']]);
-
-                unset($_SESSION['email_pendiente_verificacion']);
-                $mensaje = '¡Cuenta activada con éxito! Redirigiendo...';
-                $tipo    = 'exito';
-                header("refresh:3;url=sesiones.php?action=login");
-            }
+            unset($_SESSION['email_pendiente_verificacion']);
+            $mensaje = '¡Cuenta activada con éxito! Redirigiendo...';
+            $tipo    = 'exito';
+            header("refresh:3;url=sesiones.php?action=login");
         }
     }
 }

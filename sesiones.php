@@ -1,6 +1,8 @@
 <?php
 include 'config.inc.php';
 session_start();
+$limpieza = $conn->prepare("DELETE FROM usuarios WHERE verificado = 0");
+$limpieza->execute();
 
 //Obtenert "action" de la URL para determinar formulario a mostrar
 $action = isset($_GET['action']) ? $_GET['action'] : 'login';

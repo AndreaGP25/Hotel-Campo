@@ -12,7 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             throw new Exception("Error en la conexión con la base de datos.");
         }
 
-
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             die("Correo electrónico no válido.");
         }
@@ -53,8 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div id='modal' class='modal'>
                 <div class='modal-content'>
                     <div class='modal-header'>
-                        <span class='close'>&times;</span>
-                        <h2>Correo o Contraseña Incorrectos</h2>
+                        <h2>Correo o contraseña incorrectos</h2>
                     </div>
                     <div class='modal-body'>
                         <p>Por favor, revisa tus credenciales e intenta nuevamente.</p>
@@ -66,14 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <script>
                 var modal = document.getElementById('modal');
-                var span = document.getElementsByClassName('close')[0];
                 var btnClose = document.getElementById('btnClose');
                 modal.style.display = 'block';
-
-                span.onclick = function() {
-                    modal.style.display = 'none';
-                    window.history.back();
-                }
 
                 btnClose.onclick = function() {
                     modal.style.display = 'none';
@@ -126,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     font-size: 16px;
                     color: #555;
                     margin-bottom: 20px;
+                    font-family: 'Montserrat', sans-serif;
                 }
 
                 .modal-footer {
