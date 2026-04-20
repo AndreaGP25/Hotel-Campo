@@ -6,15 +6,23 @@
 Descripción: Archivo de configuración general de los parámetros del sistema
 Versión: 1.0
 ===============================================================================
-//Parámetros necesarios para la conexión con la base de datos
+// Parámetros necesarios para la conexión con la base de datos
 */
 $GLOBALS["servidor"] = "localhost";
 $GLOBALS["usuario"] = "root";
 $GLOBALS["contrasena"] = "";
 $GLOBALS["base_datos"] = "campo";
 
-//Directorio raiz
+// Directorio raiz
 $GLOBALS["raiz_sitio"] = "http://localhost/campo/";
+
+// Parámetros para el envío de correos
+define('SMTP_HOST',    'smtp.gmail.com');
+define('SMTP_USUARIO', 'hotelrefugiodelvalle@gmail.com');
+define('SMTP_CLAVE',   'nudt aoys otxw bhhb');
+define('SMTP_PUERTO',   587);
+define('CORREO_REMITE', 'hotelrefugiodelvalle@gmail.com');
+define('NOMBRE_HOTEL',  'Hotel Refugio del Valle');
 
 try {
     $conn = new PDO(
