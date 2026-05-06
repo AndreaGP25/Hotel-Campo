@@ -1,6 +1,6 @@
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/config.inc.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/config/config.inc.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Actualizar la información en la base de datos
         if ($imagen) {
             // Subir nueva imagen si se proporciona
-            $ruta_imagen = 'actualizaciones/' . basename($imagen);
+            $ruta_imagen = '/public/images/actualizaciones/' . basename($imagen);
             if (!move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_imagen)) {
                 die("Error al subir la imagen.");
             }
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Redirigir al listado de habitaciones aqui se puede agregar un mensaje
-        header("Location:/campo/admin/indexAdmin.php");
+        header("Location:/public/admin/indexAdmin.php");
         exit;
     } catch (PDOException $e) {
         die("Error al actualizar los datos: " . $e->getMessage());

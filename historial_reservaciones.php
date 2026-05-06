@@ -1,6 +1,6 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/header.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/autenticacion.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/autenticacion.php';
 
 $id_usuario = $_SESSION['id_usuario'];
 
@@ -28,7 +28,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historial de Reservaciones</title>
-    <link rel="stylesheet" href="/campo/estilos/estilo-historial.css">
+    <link rel="stylesheet" href="/public/css/estilo-historial.css">
 </head>
 
 <body>

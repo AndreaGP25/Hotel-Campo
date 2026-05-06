@@ -1,6 +1,6 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/header.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/autenticacion.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/autenticacion.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/campo/autenticacion.php';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hotel Refugio del Valle</title>
-  <link rel="stylesheet" href="estilos/estilo-faqs.css">
+  <link rel="stylesheet" href="css/estilo-faqs.css">
 </head>
 
 <body>
@@ -42,7 +42,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/campo/autenticacion.php';
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
 
-  <script src="/campo/funciones/faq.js"></script>
+  <script src="/public/js/faq.js"></script>
 </body>
 
 </html>

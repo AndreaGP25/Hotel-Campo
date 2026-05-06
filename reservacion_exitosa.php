@@ -1,6 +1,6 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/header.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/autenticacion.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/autenticacion.php';
 $reservaId = $_GET['id'] ?? 'Desconocido'; // Captura dinámica del ID de la reserva
 $title = "Confirmación de Reserva"; // Título dinámico
 ?>
@@ -12,7 +12,7 @@ $title = "Confirmación de Reserva"; // Título dinámico
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hotel Refugio del Valle</title>
 
-  <link rel="stylesheet" href="/campo/estilos/estilo-notificacion.css">
+  <link rel="stylesheet" href="/public/css/estilo-notificacion.css">
 </head>
 
 <body>
@@ -27,14 +27,14 @@ $title = "Confirmación de Reserva"; // Título dinámico
       </p>
       <div class="d-flex">
         <a href="index.php" class="notificacion-btn">Regresar al Inicio</a>
-        <a href="/campo/historial_reservaciones.php" class="notificacion-btn">Ver Carrito</a> <!-- Enlace muerto temporalmente -->
+        <a href="/public/historial_reservaciones.php" class="notificacion-btn">Ver Carrito</a> <!-- Enlace muerto temporalmente -->
       </div>
   </main>
  
   <?php include 'footer.php'; ?>
   
 
-  <script src="funciones/faq.js"></script> 
+  <script src="js/faq.js"></script> 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>

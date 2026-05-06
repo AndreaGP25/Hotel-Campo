@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/config.inc.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/config/config.inc.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['query'])) {
     $query = trim($_GET['query']);
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['query'])) {
             $resultados[] = [
                 'nombre' => $row['nombre'],
                 'tipo'   => $row['tipo'],
-                'url'    => '/campo/habitacion.php'
+                'url'    => '/public/habitacion.php'
             ];
         }
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['query'])) {
             $resultados[] = [
                 'nombre' => $row['nombre'],
                 'tipo'   => $row['tipo'],
-                'url'    => '/campo/servicios.php'
+                'url'    => '/public/servicios.php'
             ];
         }
 

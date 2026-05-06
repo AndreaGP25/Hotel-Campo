@@ -1,6 +1,6 @@
 <?php
 
-include 'config.inc.php';
+include 'config/config.inc.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validar datos del formulario
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Error al subir la imagen. Código de error: " . $_FILES['imagen']['error']);
         }
 
-        $ruta_imagen = $_SERVER['DOCUMENT_ROOT'] . '/campo/actualizaciones/' . basename($imagen);
+        $ruta_imagen = $_SERVER['DOCUMENT_ROOT'] . '/public/images/actualizaciones/' . basename($imagen);
 
 
         if (file_exists($ruta_imagen)) {
@@ -35,13 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute([
             ':titulo' => $titulo,
             ':precio' => $precio,
-            ':imagen' => '/campo/actualizaciones/' . basename($imagen),  // Ruta relativa en la base de datos
+            ':imagen' => '/public/images/actualizaciones/' . basename($imagen),  // Ruta relativa en la base de datos
             ':descripcion' => $descripcion,
             ':categoria' => $categoria
         ]);
 
 
-        header("Location: /campo/admin/indexAdmin.php");
+        header("Location: /public/admin/indexAdmin.php");
         exit;
 
     } else {

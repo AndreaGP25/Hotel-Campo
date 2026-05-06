@@ -22,16 +22,16 @@
 namespace PHPMailer\PHPMailer;
 
 /**
- * Configure PHPMailer with DSN string.
+ * config/configure PHPMailer with DSN string.
  *
  * @see https://en.wikipedia.org/wiki/Data_source_name
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */
-class DSNConfigurator
+class DSNconfig/configurator
 {
     /**
-     * Create new PHPMailer instance configured by DSN.
+     * Create new PHPMailer instance config/configured by DSN.
      *
      * @param string $dsn        DSN
      * @param bool   $exceptions Should we throw external exceptions?
@@ -40,28 +40,28 @@ class DSNConfigurator
      */
     public static function mailer($dsn, $exceptions = null)
     {
-        static $configurator = null;
+        static $config/configurator = null;
 
-        if (null === $configurator) {
-            $configurator = new DSNConfigurator();
+        if (null === $config/configurator) {
+            $config/configurator = new DSNconfig/configurator();
         }
 
-        return $configurator->configure(new PHPMailer($exceptions), $dsn);
+        return $config/configurator->config/configure(new PHPMailer($exceptions), $dsn);
     }
 
     /**
-     * Configure PHPMailer instance with DSN string.
+     * config/configure PHPMailer instance with DSN string.
      *
      * @param PHPMailer $mailer PHPMailer instance
      * @param string    $dsn    DSN
      *
      * @return PHPMailer
      */
-    public function configure(PHPMailer $mailer, $dsn)
+    public function config/configure(PHPMailer $mailer, $dsn)
     {
-        $config = $this->parseDSN($dsn);
+        $config/config = $this->parseDSN($dsn);
 
-        $this->applyConfig($mailer, $config);
+        $this->applyconfig/config($mailer, $config/config);
 
         return $mailer;
     }
@@ -73,34 +73,34 @@ class DSNConfigurator
      *
      * @throws Exception If DSN is malformed
      *
-     * @return array Configuration
+     * @return array config/configuration
      */
     private function parseDSN($dsn)
     {
-        $config = $this->parseUrl($dsn);
+        $config/config = $this->parseUrl($dsn);
 
-        if (false === $config || !isset($config['scheme']) || !isset($config['host'])) {
+        if (false === $config/config || !isset($config/config['scheme']) || !isset($config/config['host'])) {
             throw new Exception('Malformed DSN');
         }
 
-        if (isset($config['query'])) {
-            parse_str($config['query'], $config['query']);
+        if (isset($config/config['query'])) {
+            parse_str($config/config['query'], $config/config['query']);
         }
 
-        return $config;
+        return $config/config;
     }
 
     /**
-     * Apply configuration to mailer.
+     * Apply config/configuration to mailer.
      *
      * @param PHPMailer $mailer PHPMailer instance
-     * @param array     $config Configuration
+     * @param array     $config/config config/configuration
      *
      * @throws Exception If scheme is invalid
      */
-    private function applyConfig(PHPMailer $mailer, $config)
+    private function applyconfig/config(PHPMailer $mailer, $config/config)
     {
-        switch ($config['scheme']) {
+        switch ($config/config['scheme']) {
             case 'mail':
                 $mailer->isMail();
                 break;
@@ -113,64 +113,64 @@ class DSNConfigurator
             case 'smtp':
             case 'smtps':
                 $mailer->isSMTP();
-                $this->configureSMTP($mailer, $config);
+                $this->config/configureSMTP($mailer, $config/config);
                 break;
             default:
                 throw new Exception(
                     sprintf(
                         'Invalid scheme: "%s". Allowed values: "mail", "sendmail", "qmail", "smtp", "smtps".',
-                        $config['scheme']
+                        $config/config['scheme']
                     )
                 );
         }
 
-        if (isset($config['query'])) {
-            $this->configureOptions($mailer, $config['query']);
+        if (isset($config/config['query'])) {
+            $this->config/configureOptions($mailer, $config/config['query']);
         }
     }
 
     /**
-     * Configure SMTP.
+     * config/configure SMTP.
      *
      * @param PHPMailer $mailer PHPMailer instance
-     * @param array     $config Configuration
+     * @param array     $config/config config/configuration
      */
-    private function configureSMTP($mailer, $config)
+    private function config/configureSMTP($mailer, $config/config)
     {
-        $isSMTPS = 'smtps' === $config['scheme'];
+        $isSMTPS = 'smtps' === $config/config['scheme'];
 
         if ($isSMTPS) {
             $mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         }
 
-        $mailer->Host = $config['host'];
+        $mailer->Host = $config/config['host'];
 
-        if (isset($config['port'])) {
-            $mailer->Port = $config['port'];
+        if (isset($config/config['port'])) {
+            $mailer->Port = $config/config['port'];
         } elseif ($isSMTPS) {
             $mailer->Port = SMTP::DEFAULT_SECURE_PORT;
         }
 
-        $mailer->SMTPAuth = isset($config['user']) || isset($config['pass']);
+        $mailer->SMTPAuth = isset($config/config['user']) || isset($config/config['pass']);
 
-        if (isset($config['user'])) {
-            $mailer->Username = $config['user'];
+        if (isset($config/config['user'])) {
+            $mailer->Username = $config/config['user'];
         }
 
-        if (isset($config['pass'])) {
-            $mailer->Password = $config['pass'];
+        if (isset($config/config['pass'])) {
+            $mailer->Password = $config/config['pass'];
         }
     }
 
     /**
-     * Configure options.
+     * config/configure options.
      *
      * @param PHPMailer $mailer  PHPMailer instance
      * @param array     $options Options
      *
      * @throws Exception If option is unknown
      */
-    private function configureOptions(PHPMailer $mailer, $options)
+    private function config/configureOptions(PHPMailer $mailer, $options)
     {
         $allowedOptions = get_object_vars($mailer);
 

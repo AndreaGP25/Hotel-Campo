@@ -412,7 +412,7 @@ class PHPMailer
      * Options:
      * * `echo` Output plain-text as-is, appropriate for CLI
      * * `html` Output escaped, line breaks converted to `<br>`, appropriate for browser output
-     * * `error_log` Output to error log as configured in php.ini
+     * * `error_log` Output to error log as config/configured in php.ini
      * By default PHPMailer will use `echo` if run from a `cli` or `cli-server` SAPI, `html` otherwise.
      * Alternatively, you can provide a callable expecting two params: a message string and the debug level:
      *
@@ -1903,7 +1903,7 @@ class PHPMailer
         //PHP 5.6 workaround
         $sendmail_from_value = ini_get('sendmail_from');
         if (empty($this->Sender) && !empty($sendmail_from_value)) {
-            //PHP config has a sender address we can use
+            //PHP config/config has a sender address we can use
             $this->Sender = ini_get('sendmail_from');
         }
 
@@ -2106,7 +2106,7 @@ class PHPMailer
         //PHP 5.6 workaround
         $sendmail_from_value = ini_get('sendmail_from');
         if (empty($this->Sender) && !empty($sendmail_from_value)) {
-            //PHP config has a sender address we can use
+            //PHP config/config has a sender address we can use
             $this->Sender = ini_get('sendmail_from');
         }
         if (!empty($this->Sender) && static::validateAddress($this->Sender)) {
