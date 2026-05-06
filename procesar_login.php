@@ -1,5 +1,5 @@
 <?php
-include 'config.inc.php';
+include 'config/config.inc.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['token'] = $token;
 
             if ($usuario['rol'] === 'admin') {
-                header('Location: /campo/admin/indexAdmin.php');
+                header('Location: /public/admin/indexAdmin.php');
             } else {
                 header('Location: index.php');
             }

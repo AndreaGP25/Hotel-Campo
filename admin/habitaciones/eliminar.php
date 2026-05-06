@@ -2,11 +2,11 @@
 
 session_start();
 if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] !== 'admin') {
-    header('Location: /campo/sesiones.php?action=login');
+    header('Location: /public/sesiones.php?action=login');
     exit();
 }
 
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/config.inc.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/config/config.inc.php';
 
 $id = $_GET['id'] ?? null;
 
@@ -26,7 +26,7 @@ try {
     }
 
     
-    $ruta_imagen = $_SERVER['DOCUMENT_ROOT'] . '/campo/' . $habitacion['imagen'];
+    $ruta_imagen = $_SERVER['DOCUMENT_ROOT'] . '/public/' . $habitacion['imagen'];
     if (file_exists($ruta_imagen)) {
         unlink($ruta_imagen); 
     }
@@ -37,7 +37,7 @@ try {
     $stmt->execute([':id' => $id]);
 
     
-    header("Location: /campo/admin/indexAdmin.php");
+    header("Location: /public/admin/indexAdmin.php");
     exit;
 } catch (PDOException $e) {
     die("Error al eliminar la habitación: " . $e->getMessage());

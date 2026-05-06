@@ -43,9 +43,9 @@ CREATE TABLE `habitaciones` (
 --
 
 INSERT INTO `habitaciones` (`id`, `titulo`, `precio`, `imagen`, `descripcion`, `fecha_creacion`, `categoria`, `disponibilidad`) VALUES
-(10, 'Habitación caracol', 1400.00, 'actualizaciones/habitacion1.jpg', 'Habitacion con balcon', '2024-12-02 09:17:33', 'Estandar', 1),
-(11, 'Habitación árbol', 1200.00, 'actualizaciones/arbol.jpg', 'Habitación con balcón', '2024-12-02 21:20:49', 'Estandar', 1),
-(12, 'Habitación campo', 1300.00, 'actualizaciones/habitacioncampo.jpg', 'Amplia habitación con balcón', '2024-12-02 21:25:57', 'Estandar', 1);
+(10, 'Habitación caracol', 1400.00, 'images/actualizaciones/habitacion1.jpg', 'Habitacion con balcon', '2024-12-02 09:17:33', 'Estandar', 1),
+(11, 'Habitación árbol', 1200.00, 'images/actualizaciones/arbol.jpg', 'Habitación con balcón', '2024-12-02 21:20:49', 'Estandar', 1),
+(12, 'Habitación campo', 1300.00, 'images/actualizaciones/habitacioncampo.jpg', 'Amplia habitación con balcón', '2024-12-02 21:25:57', 'Estandar', 1);
 
 -- --------------------------------------------------------
 

@@ -194,7 +194,7 @@ footer {
 /* ----------------------- Sección FAQ ------------------------*/
 .faq-wrapper {
   position: relative;
-  background: url('../imagenes/faq.jpg') no-repeat center center;
+  background: url('../images/faq.jpg') no-repeat center center;
   background-size: cover;
   padding: 5rem 1rem;
 }
