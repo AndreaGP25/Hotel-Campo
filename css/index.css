@@ -379,7 +379,7 @@ footer {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilos del fieldset */
+/* css del fieldset */
 .formulario-crear fieldset {
     border: 1px solid var(--grisOscuro);
     border-radius: 0.5rem;

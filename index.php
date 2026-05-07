@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/header.php';
 ?>
 
 <!DOCTYPE html>
@@ -23,36 +23,36 @@ include $_SERVER['DOCUMENT_ROOT'] . '/campo/header.php';
       </div>
       <div class="carousel-inner">
         <div class="carousel-item">
-          <img src="imagenes/carrusel1.jpg" alt="Descripción de la imagen" class="d-block w-100 carousel-img-altura" />
+          <img src="/public/images/carrusel1.jpg" alt="Descripción de la imagen" class="d-block w-100 carousel-img-altura" />
           <div class="container">
             <div class="carousel-caption text-start">
               <h2 class="shadow">Conoce nuestros servicios</h2>
               <p class="opacity-75 shadow">Desde el desayuno hasta la relajación. Explora los servicios que te ofrecemos
                 para disfrutar al máximo</p>
-              <p><a class="botones-carrusel mayusculas botones" href="/campo/servicios.php">Servicios</a></p>
+              <p><a class="botones-carrusel mayusculas botones" href="/public/servicios.php">Servicios</a></p>
             </div>
           </div>
         </div>
         <div class="carousel-item active">
-          <img src="imagenes/carrusel2.2.jpg" alt="Descripción de la imagen"
+          <img src="/public/images/carrusel2.2.jpg" alt="Descripción de la imagen"
             class="d-block w-100 carousel-img-altura" />
           <div class="container">
             <div class="carousel-caption">
               <h2 class="shadow">El lugar ideal para descansar</h2>
               <p class="opacity-75 shadow">Encuentra tu escape perfecto en el Hotel Refugio del Valle, donde la
                 comodidad se encuentra con la naturaleza</p>
-              <p><a class="botones-carrusel mayusculas botones" href="/campo/reservacion.php">Reservar</a></p>
+              <p><a class="botones-carrusel mayusculas botones" href="/public/reservacion.php">Reservar</a></p>
             </div>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="imagenes/carrusel3.jpg" alt="Descripción de la imagen" class="d-block w-100 carousel-img-altura" />
+          <img src="/public/images/carrusel3.jpg" alt="Descripción de la imagen" class="d-block w-100 carousel-img-altura" />
           <div class="container">
             <div class="carousel-caption text-end">
               <h2 class="shadow">Conoce nuestras habitaciones</h2>
               <p class="opacity-75 shadow">Habitaciones que invitan al descanso, un espacio donde cada detalle está
                 pensado para ti.</p>
-              <p><a class="botones-carrusel mayusculas botones" href="/campo/habitacion.php">Habitaciones</a></p>
+              <p><a class="botones-carrusel mayusculas botones" href="/public/habitacion.php">Habitaciones</a></p>
             </div>
           </div>
         </div>
@@ -76,30 +76,30 @@ include $_SERVER['DOCUMENT_ROOT'] . '/campo/header.php';
       </div>
       <div id="contenedor-imagenes">
         <div>
-          <img src="imagenes/galeria-fotos/hotel1.jpg" alt="">
+          <img src="/public/images/galeria-fotos/hotel1.jpg" alt="">
         </div>
 
         <div>
-          <img src="imagenes/galeria-fotos/hotel2.jpg" alt="">
+          <img src="/public/images/galeria-fotos/hotel2.jpg" alt="">
         </div>
 
         <div>
-          <img src="imagenes/galeria-fotos/hotel3.jpg" alt="">
+          <img src="/public/images/galeria-fotos/hotel3.jpg" alt="">
         </div>
 
       </div>
-      <a class="boton-galeria mayusculas " href="galeria.php">Galería de fotos</a>
+      <a class="boton-galeria mayusculas " href="/public/galeria.php">Galería de fotos</a>
     </div>
 
     <div class="contenido-img">
-      <img src="imagenes/img-principal.jpg" alt="Imagen de fondo" class="background-image">
+      <img src="/public/images/img-principal.jpg" alt="Imagen de fondo" class="background-image">
 
       <div class="sobreponer">
         <div class="contenido-texto">
           <h2>Tu escapada perfecta de verano</h2>
           <p>Haz de este verano un recuerdo inolvidable. Disfruta de una escapada perfecta llena de momentos únicos. ¡Te
             esperamos!</p>
-          <a href="/campo/reservacion.php" class="boton-galeria mayusculas">Reservar</a>
+          <a href="/public/reservacion.php" class="boton-galeria mayusculas">Reservar</a>
         </div>
       </div>
     </div>
@@ -112,37 +112,37 @@ include $_SERVER['DOCUMENT_ROOT'] . '/campo/header.php';
       </div>
       <div id="contenedor-iconos">
         <div>
-          <img src="/campo/imagenes/iconos/bicicleta.svg" alt="">
+          <img src="/public/images/iconos/bicicleta.svg" alt="">
           <p class="texto-icono">Actividades recreativas</p>
         </div>
 
         <div>
-          <img src="/campo/imagenes/iconos/servicio24hrs.svg" alt="">
+          <img src="/public/images/iconos/servicio24hrs.svg" alt="">
           <p class="texto-icono">Serivicio 24hrs</p>
         </div>
 
         <div>
-          <img src="/campo/imagenes/iconos/restaurante.svg" alt="">
+          <img src="/public/images/iconos/restaurante.svg" alt="">
           <p class="texto-icono">Restaurante</p>
         </div>
 
         <div>
-          <img src="/campo/imagenes/iconos/mascotas.svg" alt="">
+          <img src="/public/images/iconos/mascotas.svg" alt="">
           <p class="texto-icono">Áreas para mascotas</p>
         </div>
 
         <div>
-          <img src="/campo/imagenes/iconos/internet.svg" alt="">
+          <img src="/public/images/iconos/internet.svg" alt="">
           <p class="texto-icono">Internet</p>
         </div>
 
         <div>
-          <img src="/campo/imagenes/iconos/energiaverde.svg" alt="">
+          <img src="/public/images/iconos/energiaverde.svg" alt="">
           <p class="texto-icono">Energías verdes</p>
         </div>
 
       </div>
-      <a class="boton-galeria mayusculas " href="/campo/servicios.php"> Otros servicios</a>
+      <a class="boton-galeria mayusculas " href="/public/servicios.php"> Otros servicios</a>
     </div>
   </main>
   <?php include 'footer.php'; ?>
@@ -151,7 +151,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/campo/header.php';
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
 
-  <script src="funciones/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 
 </html>

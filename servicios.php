@@ -1,6 +1,6 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/header.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/autenticacion.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/autenticacion.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/campo/autenticacion.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Refugio del Valle</title>
-    <link rel="stylesheet" href="/campo/estilos/estilo-servicios.css">
+    <link rel="stylesheet" href="/public/css/estilo-servicios.css">
 </head>
 
 <body>
@@ -24,7 +24,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/campo/autenticacion.php';
                 <section class="services-container">
                     <!-- Servicio 1 -->
                     <div class="service-card">
-                        <img src="imagenes/servicio2.jpg" alt="Service 1" class="service-image">
+                        <img src="images/servicio2.jpg" alt="Service 1" class="service-image">
                         <br>
                         <h2>Servicios de la habitaci&oacute;n</h2>
                         <p>Disfruta de una experiencia única con nuestras habitaciones diseñadas para tu comodidad...
@@ -38,7 +38,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/campo/autenticacion.php';
 
                     <!-- Servicio 2 -->
                     <div class="service-card">
-                        <img src="imagenes/servicio3.jpg" alt="Service 2" class="service-image">
+                        <img src="images/servicio3.jpg" alt="Service 2" class="service-image">
                         <br>
                         <h2>Servicios del hotel</h2>
                         <p>Sumérgete en una experiencia inolvidable con nuestros servicios exclusivos...</p>
@@ -52,7 +52,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/campo/autenticacion.php';
 
                     <!-- Servicio 2 -->
                     <div class="service-card">
-                        <img src="imagenes/servicio1.jpg" alt="Service 3" class="service-image">
+                        <img src="images/servicio1.jpg" alt="Service 3" class="service-image">
                         <br>
                         <h2>Servicios para contratar</h2>
                         <p>Haz de tu estancia algo único con nuestros servicios adicionales... </p>
@@ -71,7 +71,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/campo/autenticacion.php';
     </main>
 
     <?php include 'footer.php'; ?>
-    <script src="funciones/script_servicios.js"></script>
+    <script src="js/script_servicios.js"></script>
 
 </body>
 

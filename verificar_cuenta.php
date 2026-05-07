@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config.inc.php';
+include 'config/config.inc.php';
 include 'enviar_correo.php';
 
 $email_usuario = $_SESSION['email_pendiente_verificacion'] ?? 'tu correo';
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificar Cuenta | Hotel Refugio del Valle</title>
-    <link rel="stylesheet" href="estilos/estilo-sesion.css">
+    <link rel="stylesheet" href="css/estilo-sesion.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { background: #f4f4f4; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <div class="contenedor-verificacion">
-    <img src="imagenes/logo.png" alt="Hotel Logo" class="logo-verificar">
+    <img src="/public/images/logo.png" alt="Hotel Logo" class="logo-verificar">
     <h2>Verifica tu cuenta</h2>
     <p>Enviamos un código de 6 dígitos a <br><span class="email-resaltado"><?= htmlspecialchars($email_usuario) ?></span>.<br>Ingrésalo aquí para activar tu cuenta.</p>
 

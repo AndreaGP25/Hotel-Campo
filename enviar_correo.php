@@ -3,9 +3,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require $_SERVER['DOCUMENT_ROOT'] . '/campo/libs/PHPMailer/src/Exception.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/campo/libs/PHPMailer/src/PHPMailer.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/campo/libs/PHPMailer/src/SMTP.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/public/libs/PHPMailer/src/Exception.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/public/libs/PHPMailer/src/PHPMailer.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/public/libs/PHPMailer/src/SMTP.php';
 
 /**
  * Envía un correo HTML usando PHPMailer.

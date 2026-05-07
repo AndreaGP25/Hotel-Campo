@@ -1,5 +1,5 @@
 <?php
-include 'config.inc.php';
+include 'config/config.inc.php';
 include 'enviar_correo.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

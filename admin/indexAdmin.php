@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/config.inc.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/config/config.inc.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
 if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] !== 'admin') {
-    header('Location: /campo/sesiones.php?action=login');
+    header('Location: /public/sesiones.php?action=login');
     exit();
 }
 
@@ -41,7 +41,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Refugio del Valle</title>
-    <link rel="shortcut icon" href="/campo/imagenes/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/public/images/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -50,16 +50,16 @@ try {
     <link
         href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/campo/estilos/normalize.css">
-    <link rel="stylesheet" href="/campo/estilos/index.css">
-    <link rel="stylesheet" href="/campo/estilos/estilo-admin.css">
+    <link rel="stylesheet" href="/public/css/normalize.css">
+    <link rel="stylesheet" href="/public/css/index.css">
+    <link rel="stylesheet" href="/public/css/estilo-admin.css">
 
 </head>
 
 <body>
     <header class="navbar navbar-expand-md">
         <div class="container-fluid">
-            <a class="margen" href="/campo/index.php">
+            <a class="margen" href="/public/index.php">
                 <h1>Refugio del valle</h1>
             </a>
 
@@ -71,19 +71,19 @@ try {
             <div class=" opciones collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/campo/index.php">Inicio</a>
+                        <a class="nav-link" href="/public/index.php">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/campo/hotel.php">Hotel</a>
+                        <a class="nav-link" href="/public/hotel.php">Hotel</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/campo/habitacion.php">Habitaciones</a>
+                        <a class="nav-link" href="/public/habitacion.php">Habitaciones</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/campo/reservacion.php">Reservar</a>
+                        <a class="nav-link" href="/public/reservacion.php">Reservar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/campo/historial_reservaciones.php">Historial</a>
+                        <a class="nav-link" href="/public/historial_reservaciones.php">Historial</a>
                     </li>
                 </ul>
 
@@ -97,7 +97,7 @@ try {
                         <?php if ($rolUsuario === 'admin'): ?>
                             <!-- Botón Editar para administradores -->
                             <button id="btn-editar" class="botones mayusculas"
-                                onclick="window.location.href='/campo/admin/indexAdmin.php'">
+                                onclick="window.location.href='/public/admin/indexAdmin.php'">
                                 Editar
                             </button>
                         <?php else: ?>
@@ -105,13 +105,13 @@ try {
                             <span id="saludo">Hola, <?= htmlspecialchars($nombreUsuario); ?></span>
                         <?php endif; ?>
                         <button id="btn-iniciar" class="botones mayusculas"
-                            onclick="window.location.href='/campo/logout.php'">
+                            onclick="window.location.href='/public/logout.php'">
                             Cerrar Sesión
                         </button>
                     <?php else: ?>
                         <!-- Botón para usuarios no autenticados -->
                         <button id="btn-iniciar" class="botones mayusculas"
-                            onclick="window.location.href='/campo/sesiones.php?action=login'">Iniciar Sesión</button>
+                            onclick="window.location.href='/public/sesiones.php?action=login'">Iniciar Sesión</button>
                     <?php endif; ?>
                 </div>
             </div>
@@ -120,7 +120,7 @@ try {
 
     <main class="contenedor">
         <h2 class="titulo-admin">Administrador de Hotel Refugio del Valle</h2>
-        <a href="/campo/admin/habitaciones/crear.php" class="botones btn-crud mayusculas">Nueva habitaci&oacute;n</a>
+        <a href="/public/admin/habitaciones/crear.php" class="botones btn-crud mayusculas">Nueva habitaci&oacute;n</a>
 
         <table class="tabla-habitaciones">
             <thead>
@@ -145,16 +145,16 @@ try {
                             <td><?= htmlspecialchars($habitacion['id']) ?></td>
                             <td><?= htmlspecialchars($habitacion['titulo']) ?></td>
                             <td>
-                                <img src="/campo/<?= htmlspecialchars($habitacion['imagen']) ?>"
+                                <img src="/public/<?= htmlspecialchars($habitacion['imagen']) ?>"
                                     alt="<?= htmlspecialchars($habitacion['titulo']) ?>" width="80">
 
                             </td>
                             <td>$<?= number_format($habitacion['precio'], 2) ?></td>
                             <td><?= htmlspecialchars($habitacion['categoria']) ?></td>
                             <td>
-                                <a href="/campo/admin/habitaciones/eliminar.php?id=<?= $habitacion['id'] ?>"
+                                <a href="/public/admin/habitaciones/eliminar.php?id=<?= $habitacion['id'] ?>"
                                     class="btn-accion btn-eliminar">Eliminar</a>
-                                <a href="/campo/admin/habitaciones/actualizar.php?id=<?= $habitacion['id'] ?>"
+                                <a href="/public/admin/habitaciones/actualizar.php?id=<?= $habitacion['id'] ?>"
                                     class="btn-accion btn-actualizar">Actualizar</a>
 
                             </td>
@@ -170,9 +170,9 @@ try {
 
         <div class="opciones flex centrar-footer borde">
             <ul class="navegacion centrar-footer">
-                <li><a href="/campo/index.php">Inicio</a></li>
-                <li><a href="/campo/preguntas-con-javascript.php#faq-contacto">Contacto</a></li>
-                <li><a href="/campo/preguntas-con-javascript.php">FAQs</a></li>
+                <li><a href="/public/index.php">Inicio</a></li>
+                <li><a href="/public/faqs.php#faq-contacto">Contacto</a></li>
+                <li><a href="/public/faqs.php">FAQs</a></li>
                 <li><a href="https://maps.app.goo.gl/Mtrx23by6En5LVF5A" target="_blank">Ubicación</a></li>
             </ul>
         </div>
@@ -216,7 +216,7 @@ try {
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     
-    <script src="../funciones/script_buscar.js"></script>
+    <script src="../js/script_buscar.js"></script>
 </body>
 
 </html>

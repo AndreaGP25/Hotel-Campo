@@ -1,5 +1,5 @@
 <?php
-include 'config.inc.php';
+include 'config/config.inc.php';
 session_start();
 $limpieza = $conn->prepare("DELETE FROM usuarios WHERE verificado = 0");
 $limpieza->execute();
@@ -17,11 +17,11 @@ $mensaje_error = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : "";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesión | Hotel Refugio del Valle</title>
-    <link rel="stylesheet" href="estilos/normalize.css">
+    <link rel="stylesheet" href="css/normalize.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="estilos/estilo-sesion.css">
+    <link rel="stylesheet" href="css/estilo-sesion.css">
 </head>
 
 <body>
@@ -100,12 +100,12 @@ $mensaje_error = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : "";
             </div>
 
             <div class="logo_centrado">
-                <img src="imagenes/logo.png" alt="Logo del Hotel">
+                <img src="/public/images/logo.png" alt="Logo del Hotel">
             </div>
         </div>
     </main>
 
-    <script src="funciones/script_inicio.js"></script>
+    <script src="js/script_inicio.js"></script>
     
     <script>
         //Script de validación en tiempo real para contraseñas

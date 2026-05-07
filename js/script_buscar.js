@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch(`/campo/buscar.php?query=${encodeURIComponent(query)}`);
+            const response = await fetch(`/public/buscar.php?query=${encodeURIComponent(query)}`);
             const data = await response.json();
             if (data.error) {
                 resultados.innerHTML = '<li class="dropdown-item text-danger">Error al buscar</li>';

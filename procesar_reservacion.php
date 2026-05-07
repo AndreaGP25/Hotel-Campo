@@ -1,5 +1,5 @@
 <?php
-include 'config.inc.php';
+include 'config/config.inc.php';
 include 'enviar_correo.php';
 
 // Verificar el estado de la sesión
@@ -150,7 +150,7 @@ foreach ($selecciones as $id => $cantidadSeleccionada) {
         enviarCorreo($email, $nombre, $asunto, $cuerpoHTML);
 
         // Redirigir al éxito
-        header("Location: /campo/reservacion_exitosa.php");
+        header("Location: /public/reservacion_exitosa.php");
         exit;
     } catch (PDOException $e) {
         // Revertir transacción en caso de error

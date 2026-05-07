@@ -25,7 +25,7 @@
             "type": "github"
         }
     ],
-    "config": {
+    "config/config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         },

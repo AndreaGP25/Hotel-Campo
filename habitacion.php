@@ -1,6 +1,6 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/header.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/autenticacion.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/autenticacion.php';
 
 try {
   $sql = "SELECT titulo, imagen, descripcion, precio, categoria FROM habitaciones WHERE disponibilidad = 1";
@@ -21,7 +21,7 @@ try {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hotel Refugio del Valle</title>
-  <link rel="stylesheet" href="estilos/estilo-habitacion.css">
+  <link rel="stylesheet" href="css/estilo-habitacion.css">
 </head>
 
 <body>
@@ -29,14 +29,14 @@ try {
     <section class="texto-habitaciones">
       <div class="titulo-habitaciones">Descubre nuestras habitaciones</div>
       <div class="p-habitaciones">En el Hotel Refugio del Valle, contamos con habitaciones de diferentes tamaños y
-        estilos para que puedas
+        css para que puedas
         disfrutar de una estancia agradable y cómoda. Todas nuestras habitaciones cuentan con servicios de calidad y
         comodidades para que te sientas como en casa.</div>
     </section>
 
     <section class="habitaciones">
       <div class="habitacion">
-        <img src="/campo/imagenes/habitacion1.jpg" alt="Habitación Standard">
+        <img src="/public/images/habitacion1.jpg" alt="Habitación Standard">
         <h2>Habitación Estándar</h2>
         <p>Ideal para un máximo de 4 personas</p>
         <ul>
@@ -52,7 +52,7 @@ try {
         </ul>
       </div>
       <div class="habitacion">
-        <img src="/campo/imagenes/habitacion2.jpg" alt="Habitación Suite">
+        <img src="/public/images/habitacion2.jpg" alt="Habitación Suite">
         <h2>Habitación Superior </h2>
         <p>Ideal para un máximo de 4 personas</p>
         <ul>
@@ -96,7 +96,7 @@ try {
 
   <?php include 'footer.php'; ?>
 
-  <script src="funciones/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 
 </html>

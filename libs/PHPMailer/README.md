@@ -63,7 +63,7 @@ If you want to use XOAUTH2 authentication, you will also need to add a dependenc
 by @decomplexity's [SendOauth2 wrapper](https://github.com/decomplexity/SendOauth2), especially if you're using Microsoft services.
 
 Alternatively, if you're not using Composer, you
-can [download PHPMailer as a zip file](https://github.com/PHPMailer/PHPMailer/archive/master.zip), (note that docs and examples are not included in the zip file), then copy the contents of the PHPMailer folder into one of the `include_path` directories specified in your PHP configuration and load each class file manually:
+can [download PHPMailer as a zip file](https://github.com/PHPMailer/PHPMailer/archive/master.zip), (note that docs and examples are not included in the zip file), then copy the contents of the PHPMailer folder into one of the `include_path` directories specified in your PHP config/configuration and load each class file manually:
 
 ```php
 <?php
