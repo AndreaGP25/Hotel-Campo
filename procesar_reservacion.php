@@ -56,14 +56,23 @@ foreach ($selecciones as $id => $cantidadSeleccionada) {
     }
 
     // Calcular el monto total basado en los precios de las habitaciones
-    $monto = 0;
-    foreach ($habitaciones as $habitacionId) {
-        $sql = "SELECT precio FROM habitaciones WHERE id = :id";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute([':id' => $habitacionId]);
-        $precio = $stmt->fetchColumn();
-        $monto += $precio * $dias;
-    }
+	$monto = 0;
+	$datosHabitaciones = []; // guardar datos para el correo
+
+	foreach ($habitaciones as $habitacionId) {
+    	$sql = "SELECT precio, titulo FROM habitaciones WHERE id = :id";
+    	$stmt = $conn->prepare($sql);
+    	$stmt->execute([':id' => $habitacionId]);
+    	$habitacion = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    	$precio = $habitacion['precio'];
+    	$monto += $precio * $dias;
+
+    	$datosHabitaciones[$habitacionId] = [ // guardar snapshot
+        	'titulo' => $habitacion['titulo'],
+        	'precio' => $precio,
+    	];
+	}
 
     // Capturar datos de pago
     $nombre_titular = $_POST['nombre_titular'];
@@ -121,20 +130,17 @@ foreach ($selecciones as $id => $cantidadSeleccionada) {
         $conn->commit();
 
         // Preparar detalles de habitaciones para el correo
-        $detallesHabitaciones = [];
-        foreach ($habitaciones as $habitacionId) {
-            $sql = "SELECT titulo, precio FROM habitaciones WHERE id = :id";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute([':id' => $habitacionId]);
-            $habitacion = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            $detallesHabitaciones[] = [
-                'titulo' => $habitacion['titulo'],
-                'precio' => $habitacion['precio'],
-                'noches' => $dias,
-                'subtotal' => $habitacion['precio'] * $dias
-            ];
-        }
+		$detallesHabitaciones = [];
+		foreach ($habitaciones as $habitacionId) {
+   			$datos = $datosHabitaciones[$habitacionId];
+
+    		$detallesHabitaciones[] = [
+        		'titulo'   => $datos['titulo'],
+        		'precio'   => $datos['precio'],
+        		'noches'   => $dias,
+        		'subtotal' => $datos['precio'] * $dias
+    		];
+		}
 
         // Enviar correo de confirmación
         $asunto = "Confirmación de Reservación - Hotel Refugio del Valle";
