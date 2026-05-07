@@ -1,5 +1,6 @@
 <?php
-include 'config.inc.php';
+include 'config/config.inc.php';
+include 'enviar_correo.php';
 
 // Verificar el estado de la sesión
 if (session_status() === PHP_SESSION_NONE) {
@@ -119,8 +120,37 @@ foreach ($selecciones as $id => $cantidadSeleccionada) {
         // Confirmar transacción
         $conn->commit();
 
+        // Preparar detalles de habitaciones para el correo
+        $detallesHabitaciones = [];
+        foreach ($habitaciones as $habitacionId) {
+            $sql = "SELECT titulo, precio FROM habitaciones WHERE id = :id";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([':id' => $habitacionId]);
+            $habitacion = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            $detallesHabitaciones[] = [
+                'titulo' => $habitacion['titulo'],
+                'precio' => $habitacion['precio'],
+                'noches' => $dias,
+                'subtotal' => $habitacion['precio'] * $dias
+            ];
+        }
+
+        // Enviar correo de confirmación
+        $asunto = "Confirmación de Reservación - Hotel Refugio del Valle";
+        $cuerpoHTML = plantillaConfirmacionReservacion(
+            $nombre,
+            $reservacion_id,
+            $fecha_llegada,
+            $fecha_salida,
+            $monto,
+            $detallesHabitaciones
+        );
+        
+        enviarCorreo($email, $nombre, $asunto, $cuerpoHTML);
+
         // Redirigir al éxito
-        header("Location: /campo/reservacion_exitosa.php");
+        header("Location: /public/reservacion_exitosa.php");
         exit;
     } catch (PDOException $e) {
         // Revertir transacción en caso de error

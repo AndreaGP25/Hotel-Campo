@@ -1,5 +1,5 @@
 <?php
-include 'config.inc.php';
+include 'config/config.inc.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -42,8 +42,8 @@ $habitacionesSuperior = $stmtSuperior->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservación</title>
-    <link rel="stylesheet" href="estilos/normalize.css">
-    <link rel="stylesheet" href="estilos/estilo-reservacion.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/estilo-reservacion.css">
 </head>
 
 <body>
@@ -314,7 +314,7 @@ $habitacionesSuperior = $stmtSuperior->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-    <script src="funciones/script_reservas.js"></script>
+    <script src="js/script_reservas.js"></script>
 </body>
 
 </html>

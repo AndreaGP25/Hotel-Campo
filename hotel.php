@@ -1,6 +1,6 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/header.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/campo/autenticacion.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/public/autenticacion.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/campo/autenticacion.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/campo/estilos/estilo-hotel.css">
+    <link rel="stylesheet" href="/public/css/estilo-hotel.css">
 </head>
 
 <body>

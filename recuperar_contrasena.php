@@ -1,5 +1,5 @@
 <?php
-include 'config.inc.php';
+include 'config/config.inc.php';
 include 'enviar_correo.php';
 session_start();
 
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
         $stmt->execute([$user['id_usuario'], $token, $expira]);
         
         // Enviar el url de recuperación
-        $enlace = "http://" . $_SERVER['HTTP_HOST'] . "/campo/recuperar_contrasena.php?token=" . $token;
+        $enlace = "http://" . $_SERVER['HTTP_HOST'] . "/public/recuperar_contrasena.php?token=" . $token;
         $html = plantillaRecuperacion($user['nombre'], $enlace);
         $enviado = enviarCorreo($email, $user['nombre'], 'Restablece tu contraseña — Hotel Refugio del Valle', $html);
 
@@ -63,7 +63,7 @@ if (isset($_GET['token'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Contraseña | Hotel Refugio del Valle</title>
-    <link rel="stylesheet" href="estilos/estilo-sesion.css">
+    <link rel="stylesheet" href="css/estilo-sesion.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Montserrat', sans-serif; background: #f4f4f4; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
@@ -80,7 +80,7 @@ if (isset($_GET['token'])) {
 <body>
 
     <div class="contenedor-recuperar">
-        <img src="imagenes/logo.png" style="width: 100px; margin-bottom: 25px;">
+        <img src="images/logo.png" style="width: 100px; margin-bottom: 25px;">
         
         <?php if ($mensaje): ?>
             <div class="alerta-azul"><?= $mensaje ?></div>
