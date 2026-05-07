@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Actualizar la información en la base de datos
         if ($imagen) {
             // Subir nueva imagen si se proporciona
-            $ruta_imagen = '/public/images/actualizaciones/' . basename($imagen);
+            $ruta_imagen = 'images/actualizaciones/' . basename($imagen);
             if (!move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_imagen)) {
                 die("Error al subir la imagen.");
             }
