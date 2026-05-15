@@ -36,7 +36,7 @@ try {
 
     <section class="habitaciones">
       <div class="habitacion">
-        <img src="/public/images/habitacion1.jpg" alt="Habitación Standard">
+        <img src="/public/images/habitacion1.avif" alt="Habitación Standard">
         <h2>Habitación Estándar</h2>
         <p>Ideal para un máximo de 4 personas</p>
         <ul>
@@ -52,7 +52,7 @@ try {
         </ul>
       </div>
       <div class="habitacion">
-        <img src="/public/images/habitacion2.jpg" alt="Habitación Suite">
+        <img src="/public/images/habitacion2.avif" alt="Habitación Suite">
         <h2>Habitación Superior </h2>
         <p>Ideal para un máximo de 4 personas</p>
         <ul>

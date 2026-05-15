@@ -80,7 +80,7 @@ if (isset($_GET['token'])) {
 <body>
 
     <div class="contenedor-recuperar">
-        <img src="images/logo.png" style="width: 100px; margin-bottom: 25px;">
+        <img src="images/logo.avif" style="width: 100px; margin-bottom: 25px;">
         
         <?php if ($mensaje): ?>
             <div class="alerta-azul"><?= $mensaje ?></div>

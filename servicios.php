@@ -3,9 +3,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/public/header.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/public/autenticacion.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +21,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/public/autenticacion.php';
                 <section class="services-container">
                     <!-- Servicio 1 -->
                     <div class="service-card">
-                        <img src="images/servicio2.jpg" alt="Service 1" class="service-image">
+                        <img src="images/servicio2.avif" alt="Service 1" class="service-image">
                         <br>
                         <h2>Servicios de la habitaci&oacute;n</h2>
                         <p>Disfruta de una experiencia única con nuestras habitaciones diseñadas para tu comodidad...
@@ -38,7 +35,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/public/autenticacion.php';
 
                     <!-- Servicio 2 -->
                     <div class="service-card">
-                        <img src="images/servicio3.jpg" alt="Service 2" class="service-image">
+                        <img src="images/servicio3.avif" alt="Service 2" class="service-image">
                         <br>
                         <h2>Servicios del hotel</h2>
                         <p>Sumérgete en una experiencia inolvidable con nuestros servicios exclusivos...</p>
@@ -52,7 +49,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/public/autenticacion.php';
 
                     <!-- Servicio 2 -->
                     <div class="service-card">
-                        <img src="images/servicio1.jpg" alt="Service 3" class="service-image">
+                        <img src="images/servicio1.avif" alt="Service 3" class="service-image">
                         <br>
                         <h2>Servicios para contratar</h2>
                         <p>Haz de tu estancia algo único con nuestros servicios adicionales... </p>
