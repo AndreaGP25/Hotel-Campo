@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 20-04-2026 a las 10:11:38
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Servidor: sql103.infinityfree.com
+-- Tiempo de generación: 11-05-2026 a las 18:02:22
+-- Versión del servidor: 11.4.10-MariaDB
+-- Versión de PHP: 7.2.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `campo`
+-- Base de datos: `if0_41730483_campo`
 --
 
 -- --------------------------------------------------------
@@ -43,9 +44,9 @@ CREATE TABLE `habitaciones` (
 --
 
 INSERT INTO `habitaciones` (`id`, `titulo`, `precio`, `imagen`, `descripcion`, `fecha_creacion`, `categoria`, `disponibilidad`) VALUES
-(10, 'Habitación caracol', 1400.00, 'images/actualizaciones/habitacion1.jpg', 'Habitacion con balcon', '2024-12-02 09:17:33', 'Estandar', 1),
-(11, 'Habitación árbol', 1200.00, 'images/actualizaciones/arbol.jpg', 'Habitación con balcón', '2024-12-02 21:20:49', 'Estandar', 1),
-(12, 'Habitación campo', 1300.00, 'images/actualizaciones/habitacioncampo.jpg', 'Amplia habitación con balcón', '2024-12-02 21:25:57', 'Estandar', 1);
+(10, 'Habitación caracol', '1500.00', 'images/actualizaciones/habitacion1.jpg', 'Habitacion con balcon', '2024-12-02 09:17:33', 'Estandar', 1),
+(11, 'Habitación árbol', '1200.00', 'images/actualizaciones/arbol.jpg', 'Habitación con balcón', '2024-12-02 21:20:49', 'Estandar', 1),
+(12, 'Habitación campo', '1300.00', 'images/actualizaciones/habitacioncampo.jpg', 'Amplia habitación con balcón', '2024-12-02 21:25:57', 'Estandar', 2);
 
 -- --------------------------------------------------------
 
@@ -69,7 +70,9 @@ CREATE TABLE `pagos` (
 --
 
 INSERT INTO `pagos` (`id`, `reservacion_id`, `nombre_titular`, `numero_tarjeta`, `fecha_expiracion`, `cvv`, `monto`, `fecha_pago`) VALUES
-(5, 13, 'Frida Pineda', '1111111111111111', '2024-12-31', '122', 1400.00, '2024-12-02 21:12:40');
+(5, 13, 'Frida Pineda', '1111111111111111', '2024-12-31', '122', '1400.00', '2024-12-02 21:12:40'),
+(7, 15, 'lili', '1234567890123456', '2028-09-30', '123', '1200.00', '2026-05-06 22:51:49'),
+(8, 16, 'mimi', '1234567890123456', '2028-09-30', '123', '1500.00', '2026-05-07 05:48:32');
 
 -- --------------------------------------------------------
 
@@ -93,7 +96,9 @@ CREATE TABLE `reservaciones` (
 --
 
 INSERT INTO `reservaciones` (`id`, `habitacion_id`, `nombre`, `email`, `telefono`, `fecha_llegada`, `fecha_salida`, `fecha_reservacion`) VALUES
-(13, 10, 'Mariana Pineda', 'mar@gmail.com', '997812738', '2024-12-03', '2024-12-04', '2024-12-02 15:12:40');
+(13, 10, 'Mariana Pineda', 'mar@gmail.com', '997812738', '2024-12-03', '2024-12-04', '2024-12-02 15:12:40'),
+(15, 11, 'lili', 'crislilian2015@gmail.com', '3333333333', '2026-08-02', '2026-08-03', '2026-05-06 15:51:49'),
+(16, 10, 'mimi', 'bttl.breaker@gmail.com', '2222222222', '2026-09-05', '2026-09-06', '2026-05-06 22:48:32');
 
 -- --------------------------------------------------------
 
@@ -196,25 +201,27 @@ INSERT INTO `sesiones` (`id_sesion`, `id_usuario`, `token`, `fecha_inicio`, `fec
 (45, 18, '608ea234d8e956f154e5d8bbf893436cd3b33e11ae2e4716fd8c2478c8ba7b81', '2024-12-03 03:22:54', '2024-12-03 04:13:24', '::1'),
 (46, 20, '06613a18afb48cb3fe058aa7dd56e13aadaaa2677256955f29c6ff688e8ca8c3', '2024-12-03 04:13:50', '2024-12-03 04:46:48', '::1'),
 (47, 20, 'db7146ab79573485be63c0436648f59a11c622cfc68b6424c4329ca6d1b022fd', '2026-01-20 09:40:39', '2026-01-20 09:41:13', '::1'),
-(48, 21, 'f7ce1c392f53412495799bccf4188a553b013b00aa1356389249650353ea94d1', '2026-04-07 08:36:05', NULL, '::1'),
-(49, 21, 'd0ffd2a1b43d744700f9c9ced74ef78bc8929c1a428b3e5579bc3e30f3eec0c6', '2026-04-08 08:58:06', NULL, '::1'),
-(50, 21, '46cb0527d7d0283b0235b4cb9c77d25951294c77413cb8e84f672effbddf9efd', '2026-04-08 10:05:38', NULL, '127.0.0.1'),
-(51, 21, 'a6857af54c6f029d842e4e5125f7b015c0073d38420f71d0e49315ffb1754da5', '2026-04-08 10:10:53', NULL, '::1'),
-(52, 21, '3d9dd4ccef8f27ebfeddc6cb87fb71da25507dd70df013ad6e88f39efd62ae6a', '2026-04-08 10:15:56', NULL, '::1'),
-(53, 21, '63da925ed934a94c3116968d2c1c8f99113273446013ecc6a5e56ada76623967', '2026-04-08 10:59:51', NULL, '127.0.0.1'),
-(54, 21, '72184201f5fd97c34a3724fb12a4828d1060b51a3c8753a492ce13dbd229516a', '2026-04-13 11:53:56', '2026-04-13 12:00:29', '::1'),
-(55, 21, '35ab8e39e9acfe408a99e3844632ddfd3d1f97ec35813e1e9293f1f01dd18b6c', '2026-04-13 12:00:39', NULL, '::1'),
-(56, 21, '15fa6c351d27cb701e9e9c65a308a331bd36de4fbafa905cc27c75f0a70f13ec', '2026-04-13 12:02:28', NULL, '127.0.0.1'),
-(57, 21, '6b8dc66d76ecd0862e5db6b78a7015f2dae85ce7a144b235a88a874518bb08af', '2026-04-13 12:03:32', NULL, '127.0.0.1'),
-(58, 20, 'fdd79734a18c5c588396a279ae062a1f00703055b59644a0de688d6b6115f437', '2026-04-15 10:50:03', '2026-04-15 10:58:13', '::1'),
-(59, 20, '1d00c05f54c7bc833111349f003ec5167d44a66c7b9ebe1c4e6c682e546c1d30', '2026-04-15 10:58:37', '2026-04-15 10:59:02', '127.0.0.1'),
-(60, 21, 'ca3b3f6e3a34e3eb4dfbf5d7ba37e0a32673a57437d8fccdef5ac90d82c5aef5', '2026-04-15 10:59:17', '2026-04-15 10:59:21', '127.0.0.1'),
-(61, 20, '0de00934f9420820059c8c2ff603b4cc73855ebe3bca7292479924e327d21000', '2026-04-15 11:00:01', '2026-04-15 12:21:09', '127.0.0.1'),
-(62, 20, '105a12393e3fbdae80c0e66f773110c5bb50c4e75386299a5da4fc222abe94a2', '2026-04-15 13:25:35', NULL, '::1'),
-(66, 35, '28609a95bcc879eb956a454a3ec7f42e9a48c4376c7a51db6d712ced683425da', '2026-04-17 14:11:24', '2026-04-17 14:14:27', '::1'),
-(67, 35, 'ebf475e2087dcef089327c3d7099dad0d07376a0a2f15d16a62e66734e6e29a6', '2026-04-17 14:49:50', '2026-04-17 14:49:52', '::1'),
-(68, 35, 'b7632a079e739a68d7282f9c8cc0004699dbe178eb1b4afb96c7d43ae0f36d85', '2026-04-18 02:53:40', '2026-04-18 02:53:42', '::1'),
-(69, 35, 'da19bc3809f3483dd5a373b440df924e8ac63a0b3a039315827d2088ce83cc5b', '2026-04-18 03:39:49', '2026-04-18 03:39:50', '::1');
+(53, 20, 'dac79864f0dc8a2abf6c6bb910166b86cc48f95b6b6a73dab05ec2fb12860dd9', '2026-05-04 07:23:29', '2026-05-04 07:25:47', '189.203.87.232'),
+(54, 22, '269dc442b4f222c100f7576ee295906122bcbe51772c989daad5c04b9d36ecba', '2026-05-04 07:29:47', '2026-05-04 07:44:28', '189.203.87.232'),
+(55, 22, '41312499a9ea94a5257f7bf99792bba06175830628f16211e0f9dae326935f5a', '2026-05-04 08:02:07', NULL, '189.203.87.232'),
+(56, 22, '72dc122f4bf42783b3e3350272fd401756697a225e1111b03220cb960143fc29', '2026-05-04 08:36:38', '2026-05-04 08:38:08', '189.203.87.232'),
+(57, 20, 'cb2651cd3376eaaf3cbd32c3d7d204857faaab4434d507b7a580c1f307aae1b5', '2026-05-04 08:38:25', '2026-05-04 08:39:56', '189.203.87.232'),
+(58, 22, '4d35eb1ef193ad7246782e932dca6876c423aa4efbec46dc25dd5f3f2cb5ef99', '2026-05-04 08:48:28', '2026-05-04 08:51:52', '189.203.87.232'),
+(59, 22, 'fc8ac9e80fc2afe049a36e258388446c3c358e990a1527247b076b0f69631c9b', '2026-05-04 08:56:55', '2026-05-04 08:57:53', '189.203.87.232'),
+(60, 22, '7b7c7daee4f3d9478a6dc380172f0d2fcc5e0bf0183fbede5e175d7873f925c7', '2026-05-04 09:09:49', '2026-05-04 10:01:57', '189.203.87.232'),
+(61, 23, '8275a7ffb7ff4bbe21c3aac3f59804cc8ccd92cfff7a66edd90787930d3f7ef9', '2026-05-07 01:35:00', '2026-05-07 01:48:32', '189.203.87.104'),
+(62, 22, '2df87b0c5590f6a970e761cda3d8259891853d1ed8257b8f0134740d08223c05', '2026-05-07 01:40:40', '2026-05-07 01:57:53', '189.203.87.104'),
+(63, 23, 'ea6094d30d02fe68f976d30d264fd196facfb7a7b21b575a97f1a8728e8cf1e6', '2026-05-07 01:48:53', '2026-05-07 01:58:03', '189.203.87.104'),
+(64, 20, 'babde1532a28c2284c62bba7629e8daa2e66ef24004686f8b67bc9ed1bf05e2c', '2026-05-07 08:28:50', '2026-05-07 10:14:44', '189.203.87.104'),
+(65, 22, '24aea94681f8a99e589b246e53649f639859f617cb8af3e13523d60382633d72', '2026-05-07 08:35:20', '2026-05-07 08:47:16', '189.203.87.104'),
+(66, 22, '5cd1f7ab21207ec85fd15c9e6edb298832475a4c722cf8e52f1b54e839137e98', '2026-05-07 08:47:45', '2026-05-07 10:14:42', '189.203.87.104'),
+(67, 22, '7110b328698af864e830d3742bc555d953575e9b3a0e00e57bc50e740c0a707f', '2026-05-07 20:45:07', '2026-05-07 20:46:52', '189.203.87.104'),
+(68, 22, '5b07a5c3635208021a498f746cb66bbbd9cbae3e081e05737551540dc2e79485', '2026-05-08 00:05:39', '2026-05-08 00:05:46', '201.148.19.194'),
+(69, 23, 'e473baef5b82fd6aa8328ad928d71206f6315dc06f7deb403c2595a2bf583d84', '2026-05-08 00:10:36', '2026-05-08 04:46:25', '148.209.67.254'),
+(70, 23, 'abd692b0e1d48f8924e38ca5e52bc15bcfd1d0bc30ab24291f4073df6d858472', '2026-05-08 00:11:31', '2026-05-08 00:35:20', '201.148.19.194'),
+(71, 20, 'b13868606b49ea03c7b65460bf62ad1aa50a0f586b64ad05cacd0ded5cd3f59d', '2026-05-09 00:45:07', '2026-05-09 00:47:09', '201.148.19.194'),
+(72, 22, '68a01d0728986b88cd5181c2c71d95abf5cf2921362852e35653df2027214f83', '2026-05-09 23:10:17', NULL, '189.203.87.104'),
+(73, 20, 'de30169c67136d1226f1b4796d4a5e91c9ae233833931a1a4af81fccb3f75ff4', '2026-05-12 00:50:27', NULL, '201.148.19.194');
 
 -- --------------------------------------------------------
 
@@ -230,20 +237,6 @@ CREATE TABLE `tokens_recuperacion` (
   `usado` tinyint(1) NOT NULL DEFAULT 0,
   `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `tokens_recuperacion`
---
-
-INSERT INTO `tokens_recuperacion` (`id`, `id_usuario`, `token`, `expira_en`, `usado`, `creado_en`) VALUES
-(1, 21, '31b867655d447b96fe6cae9858d3d336d1889f150fef57ac1ad1dd4d138d0ee8', '2026-04-17 04:28:47', 0, '2026-04-17 01:58:47'),
-(2, 35, '204da60761de83d97c88042d0a477118f744c43db8bc85fee2f2c2d485c259e2', '2026-04-17 08:55:51', 0, '2026-04-17 06:25:51'),
-(3, 35, 'a0571b5716abf683164577463eb5076db0aa6721ee11cd0afab240cd8797779a', '2026-04-17 09:08:02', 0, '2026-04-17 06:38:02'),
-(4, 35, '323723e1e8c7fdb98d00dbae76e27976bd2fdc5012731d56f1e4539092e2dede', '2026-04-17 09:17:26', 0, '2026-04-17 06:47:26'),
-(5, 35, '31e0664e7b7ec5b521c3282fc06a827b6ac630413561add145299dd4757d6170', '2026-04-17 09:18:16', 1, '2026-04-17 06:48:16'),
-(6, 35, '7d4aeb9b1bd046ad0ebe6d0de4a69a53c6b255b91b0133f259c61e87a0317e15', '2026-04-17 09:18:19', 0, '2026-04-17 06:48:19'),
-(7, 35, 'bd5f7819ae6c6d522314bdc5bf585e682cc18cd6e7fa70659f0b7ec404c318d3', '2026-04-17 21:22:41', 1, '2026-04-17 18:52:41'),
-(8, 35, '9a50ecb04d07a3d7619f6a65df85feef76ac606c2b892ae4f900088371bc7317', '2026-04-17 21:26:33', 0, '2026-04-17 18:56:33');
 
 -- --------------------------------------------------------
 
@@ -276,7 +269,8 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `password`, `rol`, `tel
 (17, 'Emiliano Alvarado', 'emi@gmail.com', '$2y$10$7l6dSbbBQ1XGaPLb0YroS.aQqAbg7ZXVoanDP67rRVPorxzpoP/T.', 'prospecto', '9991231234', '2024-11-17 18:05:46', 1, 1, NULL, NULL),
 (18, 'Mariana Pineda', 'mar@gmail.com', '$2y$10$Rnkb5PMb9KRhqbUvJGg6heK53Mc2KgrrT3JSw82wimfiZ7d8wzY5y', 'prospecto', '997812738', '2024-11-17 18:36:06', 1, 1, NULL, NULL),
 (20, 'Administrador', 'admin@hotel.com', '$2y$10$otf98knh7cuWzl.GdJQ...Pl6e9D97lz/G0vrlYfBZRONS/GGHjhy', 'admin', '1234567890', '2024-12-01 01:57:25', 1, 1, NULL, NULL),
-(36, 'mimi', 'bttl.breaker@gmail.com', '$2y$10$.BnIkkjQEshDCV.bmeW5xO0FLYYc5PqHQlpXCRQTyNFdrQeO02QqG', 'prospecto', '2222222222', '2026-04-17 19:43:44', 1, 0, NULL, NULL);
+(22, 'mimi', 'bttl.breaker@gmail.com', '$2y$10$8XglX5IFPjggM4JUf6Akcu0SIosHcRaUUz18qrkDHlIUtnC7nncXG', 'prospecto', '2222222222', '2026-05-04 04:29:06', 1, 1, NULL, NULL),
+(23, 'lili', 'crislilian2015@gmail.com', '$2y$10$qO3Mg.Q8ZQi.Tdapco6yMuGSrk1d962774gaOlRO8QvT8fYpdR3x6', 'prospecto', '3333333333', '2026-05-06 22:33:18', 1, 1, NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -339,19 +333,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `reservaciones`
 --
 ALTER TABLE `reservaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios`
@@ -363,19 +357,19 @@ ALTER TABLE `servicios`
 -- AUTO_INCREMENT de la tabla `sesiones`
 --
 ALTER TABLE `sesiones`
-  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT de la tabla `tokens_recuperacion`
 --
 ALTER TABLE `tokens_recuperacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Restricciones para tablas volcadas

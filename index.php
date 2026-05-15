@@ -2,17 +2,6 @@
 include $_SERVER['DOCUMENT_ROOT'] . '/public/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hotel Refugio del Valle</title>
-</head>
-
-<body>
-
   <main>
     <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
       <div class="carousel-indicators">
@@ -23,7 +12,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/public/header.php';
       </div>
       <div class="carousel-inner">
         <div class="carousel-item">
-          <img src="/public/images/carrusel1.jpg" alt="Descripción de la imagen" class="d-block w-100 carousel-img-altura" />
+          <img src="/public/images/carrusel1.avif" alt="Descripción de la imagen" class="d-block w-100 carousel-img-altura" />
           <div class="container">
             <div class="carousel-caption text-start">
               <h2 class="shadow">Conoce nuestros servicios</h2>
@@ -34,7 +23,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/public/header.php';
           </div>
         </div>
         <div class="carousel-item active">
-          <img src="/public/images/carrusel2.2.jpg" alt="Descripción de la imagen"
+          <img src="/public/images/carrusel2.2.avif" alt="Descripción de la imagen"
             class="d-block w-100 carousel-img-altura" />
           <div class="container">
             <div class="carousel-caption">
@@ -46,7 +35,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/public/header.php';
           </div>
         </div>
         <div class="carousel-item">
-          <img src="/public/images/carrusel3.jpg" alt="Descripción de la imagen" class="d-block w-100 carousel-img-altura" />
+          <img src="/public/images/carrusel3.avif" alt="Descripción de la imagen" class="d-block w-100 carousel-img-altura" />
           <div class="container">
             <div class="carousel-caption text-end">
               <h2 class="shadow">Conoce nuestras habitaciones</h2>
@@ -76,15 +65,15 @@ include $_SERVER['DOCUMENT_ROOT'] . '/public/header.php';
       </div>
       <div id="contenedor-imagenes">
         <div>
-          <img src="/public/images/galeria-fotos/hotel1.jpg" alt="">
+          <img src="/public/images/galeria-fotos/hotel1.avif" alt="">
         </div>
 
         <div>
-          <img src="/public/images/galeria-fotos/hotel2.jpg" alt="">
+          <img src="/public/images/galeria-fotos/hotel2.avif" alt="">
         </div>
 
         <div>
-          <img src="/public/images/galeria-fotos/hotel3.jpg" alt="">
+          <img src="/public/images/galeria-fotos/hotel3.avif" alt="">
         </div>
 
       </div>
@@ -92,7 +81,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/public/header.php';
     </div>
 
     <div class="contenido-img">
-      <img src="/public/images/img-principal.jpg" alt="Imagen de fondo" class="background-image">
+      <img src="/public/images/img-principal.avif" alt="Imagen de fondo" class="background-image">
 
       <div class="sobreponer">
         <div class="contenido-texto">
@@ -146,10 +135,6 @@ include $_SERVER['DOCUMENT_ROOT'] . '/public/header.php';
     </div>
   </main>
   <?php include 'footer.php'; ?>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
 
   <script src="js/script.js"></script>
 </body>

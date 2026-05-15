@@ -80,11 +80,11 @@ h2{
 
 .grafico--camisas {
     grid-row: 2/3;
-    background-image:url(../images/galeria-fotos/hotel4.jpg) ;
+    background-image:url(../images/galeria-fotos/hotel4.avif) ;
 }
 
 .grafico--node {
-    background-image: url(../images/galeria-fotos/hotel13.jpg);
+    background-image: url(../images/galeria-fotos/hotel13.avif);
     grid-row: 8/9;
 }
 
