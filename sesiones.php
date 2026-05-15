@@ -100,7 +100,7 @@ $mensaje_error = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : "";
             </div>
 
             <div class="logo_centrado">
-                <img src="/public/images/logo.png" alt="Logo del Hotel">
+                <img src="/public/images/logo.avif" alt="Logo del Hotel">
             </div>
         </div>
     </main>

@@ -14,7 +14,7 @@ main {
 }
 
 .background-wrapper {
-    background-image: url('/public/images/fondo-formulario.jpg');
+    background-image: url('/public/images/fondo-formulario.avif');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

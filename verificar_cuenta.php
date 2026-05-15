@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <div class="contenedor-verificacion">
-    <img src="/public/images/logo.png" alt="Hotel Logo" class="logo-verificar">
+    <img src="/public/images/logo.avif" alt="Hotel Logo" class="logo-verificar">
     <h2>Verifica tu cuenta</h2>
     <p>Enviamos un código de 6 dígitos a <br><span class="email-resaltado"><?= htmlspecialchars($email_usuario) ?></span>.<br>Ingrésalo aquí para activar tu cuenta.</p>
 
