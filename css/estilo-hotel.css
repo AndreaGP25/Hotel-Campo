@@ -85,11 +85,9 @@ section {
     line-height: 1.6;
 }
 
-
-
-
-
-
-
-
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
+}
 
