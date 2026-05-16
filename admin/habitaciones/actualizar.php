@@ -140,7 +140,10 @@ try {
                     value="<?= htmlspecialchars($habitacion['precio']) ?>" required>
 
                 <label for="imagen">Imagen (Dejar vacío si no se desea cambiar la imagen):</label>
-                <input type="file" name="imagen" id="imagen" class="input-file" accept="image/jpeg, image/png">
+                <input type="file" name="imagen" id="imagen" class="input-file" accept="image/jpeg, image/png, image/avif">
+				<?php if (isset($_GET['error']) && $_GET['error'] === 'peso'): ?>
+    				<p id="error-imagen" style="color: red; font-size: 1.1rem;">La imagen no puede pesar más de 200 KB.</p>
+				<?php endif; ?>
 
                 <label for="descripcion">Descripción:</label>
                 <textarea name="descripcion" id="descripcion" class="textarea" rows="4"
@@ -205,6 +208,7 @@ try {
 
     </footer>
 
+    <script src="/public/js/script_imagen.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

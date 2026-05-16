@@ -9,13 +9,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $descripcion = $_POST['descripcion'] ?? null;
     $imagen = $_FILES['imagen']['name'] ?? null;
     $categoria = $_POST['categoria'] ?? 'Estandar';
-
+    $max_size = 200 * 1024; // 200 KB
 
     if ($titulo && $precio && $descripcion && $imagen) {
 
         if ($_FILES['imagen']['error'] !== UPLOAD_ERR_OK) {
             die("Error al subir la imagen. Código de error: " . $_FILES['imagen']['error']);
         }
+        
+		if ($_FILES['imagen']['size'] > $max_size) {
+    		header("Location: /public/admin/habitaciones/crear.php?error=peso");
+    		exit;
+		}
 
         $ruta_imagen = $_SERVER['DOCUMENT_ROOT'] . 'images/actualizaciones/' . basename($imagen);
 
