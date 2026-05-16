@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $descripcion = $_POST['descripcion'] ?? null;
     $categoria = $_POST['categoria'] ?? null;
     $imagen = $_FILES['imagen']['name'] ?? null;
+    $max_size = 200 * 1024;
 
     if (!$id || !$titulo || !$precio || !$descripcion || !$categoria) {
         die("Por favor, completa todos los campos obligatorios.");
@@ -23,7 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_imagen)) {
                 die("Error al subir la imagen.");
             }
-
+			
+            if ($_FILES['imagen']['size'] > $max_size) {
+    			header("Location: /public/admin/habitaciones/actualizar.php?id={$id}&error=peso");
+    			exit;
+			}
+            
             // Actualizar con nueva imagen
             $sql = "UPDATE habitaciones 
                     SET titulo = :titulo, precio = :precio, imagen = :imagen, descripcion = :descripcion, categoria = :categoria 
