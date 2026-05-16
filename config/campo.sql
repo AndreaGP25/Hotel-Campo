@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: sql103.infinityfree.com
--- Tiempo de generación: 11-05-2026 a las 18:02:22
+-- Tiempo de generación: 11-05-2026 a las 18:19:47
 -- Versión del servidor: 11.4.10-MariaDB
 -- Versión de PHP: 7.2.22
 
@@ -72,7 +72,8 @@ CREATE TABLE `pagos` (
 INSERT INTO `pagos` (`id`, `reservacion_id`, `nombre_titular`, `numero_tarjeta`, `fecha_expiracion`, `cvv`, `monto`, `fecha_pago`) VALUES
 (5, 13, 'Frida Pineda', '1111111111111111', '2024-12-31', '122', '1400.00', '2024-12-02 21:12:40'),
 (7, 15, 'lili', '1234567890123456', '2028-09-30', '123', '1200.00', '2026-05-06 22:51:49'),
-(8, 16, 'mimi', '1234567890123456', '2028-09-30', '123', '1500.00', '2026-05-07 05:48:32');
+(8, 16, 'mimi', '1234567890123456', '2028-09-30', '123', '1500.00', '2026-05-07 05:48:32'),
+(9, 18, 'Mariana C B', '1234567891234567', '2027-12-31', '123', '18900.00', '2026-05-11 22:08:31');
 
 -- --------------------------------------------------------
 
@@ -88,17 +89,20 @@ CREATE TABLE `reservaciones` (
   `telefono` varchar(20) DEFAULT NULL,
   `fecha_llegada` date NOT NULL,
   `fecha_salida` date NOT NULL,
-  `fecha_reservacion` datetime NOT NULL DEFAULT current_timestamp()
+  `fecha_reservacion` datetime NOT NULL DEFAULT current_timestamp(),
+  `estado` enum('activa','cancelada') NOT NULL DEFAULT 'activa'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `reservaciones`
 --
 
-INSERT INTO `reservaciones` (`id`, `habitacion_id`, `nombre`, `email`, `telefono`, `fecha_llegada`, `fecha_salida`, `fecha_reservacion`) VALUES
-(13, 10, 'Mariana Pineda', 'mar@gmail.com', '997812738', '2024-12-03', '2024-12-04', '2024-12-02 15:12:40'),
-(15, 11, 'lili', 'crislilian2015@gmail.com', '3333333333', '2026-08-02', '2026-08-03', '2026-05-06 15:51:49'),
-(16, 10, 'mimi', 'bttl.breaker@gmail.com', '2222222222', '2026-09-05', '2026-09-06', '2026-05-06 22:48:32');
+INSERT INTO `reservaciones` (`id`, `habitacion_id`, `nombre`, `email`, `telefono`, `fecha_llegada`, `fecha_salida`, `fecha_reservacion`, `estado`) VALUES
+(13, 10, 'Mariana Pineda', 'mar@gmail.com', '997812738', '2024-12-03', '2024-12-04', '2024-12-02 15:12:40', 'activa'),
+(15, 11, 'lili', 'crislilian2015@gmail.com', '3333333333', '2026-08-02', '2026-08-03', '2026-05-06 15:51:49', 'activa'),
+(16, 10, 'mimi', 'bttl.breaker@gmail.com', '2222222222', '2026-09-05', '2026-09-06', '2026-05-06 22:48:32', 'activa'),
+(17, 11, 'Mariana C', 'marianacabbel@gmail.com', '9993895484', '2026-05-20', '2026-05-27', '2026-05-11 15:08:31', 'cancelada'),
+(18, 10, 'Mariana C', 'marianacabbel@gmail.com', '9993895484', '2026-05-20', '2026-05-27', '2026-05-11 15:08:31', 'cancelada');
 
 -- --------------------------------------------------------
 
@@ -221,7 +225,9 @@ INSERT INTO `sesiones` (`id_sesion`, `id_usuario`, `token`, `fecha_inicio`, `fec
 (70, 23, 'abd692b0e1d48f8924e38ca5e52bc15bcfd1d0bc30ab24291f4073df6d858472', '2026-05-08 00:11:31', '2026-05-08 00:35:20', '201.148.19.194'),
 (71, 20, 'b13868606b49ea03c7b65460bf62ad1aa50a0f586b64ad05cacd0ded5cd3f59d', '2026-05-09 00:45:07', '2026-05-09 00:47:09', '201.148.19.194'),
 (72, 22, '68a01d0728986b88cd5181c2c71d95abf5cf2921362852e35653df2027214f83', '2026-05-09 23:10:17', NULL, '189.203.87.104'),
-(73, 20, 'de30169c67136d1226f1b4796d4a5e91c9ae233833931a1a4af81fccb3f75ff4', '2026-05-12 00:50:27', NULL, '201.148.19.194');
+(73, 20, 'de30169c67136d1226f1b4796d4a5e91c9ae233833931a1a4af81fccb3f75ff4', '2026-05-12 00:50:27', '2026-05-12 01:10:51', '201.148.19.194'),
+(74, 25, '1eb3b758d8fe5cb2b1a104d086613ef2a89541db4c4ce7b9a0d0d348ff75e6a9', '2026-05-12 01:06:52', NULL, '148.209.68.121'),
+(75, 22, '96cf5340379b5dee9ceb1c78e3002db93cc40e3c010800af5129b6d9050296ac', '2026-05-12 01:11:03', NULL, '201.148.19.194');
 
 -- --------------------------------------------------------
 
@@ -270,7 +276,8 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `password`, `rol`, `tel
 (18, 'Mariana Pineda', 'mar@gmail.com', '$2y$10$Rnkb5PMb9KRhqbUvJGg6heK53Mc2KgrrT3JSw82wimfiZ7d8wzY5y', 'prospecto', '997812738', '2024-11-17 18:36:06', 1, 1, NULL, NULL),
 (20, 'Administrador', 'admin@hotel.com', '$2y$10$otf98knh7cuWzl.GdJQ...Pl6e9D97lz/G0vrlYfBZRONS/GGHjhy', 'admin', '1234567890', '2024-12-01 01:57:25', 1, 1, NULL, NULL),
 (22, 'mimi', 'bttl.breaker@gmail.com', '$2y$10$8XglX5IFPjggM4JUf6Akcu0SIosHcRaUUz18qrkDHlIUtnC7nncXG', 'prospecto', '2222222222', '2026-05-04 04:29:06', 1, 1, NULL, NULL),
-(23, 'lili', 'crislilian2015@gmail.com', '$2y$10$qO3Mg.Q8ZQi.Tdapco6yMuGSrk1d962774gaOlRO8QvT8fYpdR3x6', 'prospecto', '3333333333', '2026-05-06 22:33:18', 1, 1, NULL, NULL);
+(23, 'lili', 'crislilian2015@gmail.com', '$2y$10$qO3Mg.Q8ZQi.Tdapco6yMuGSrk1d962774gaOlRO8QvT8fYpdR3x6', 'prospecto', '3333333333', '2026-05-06 22:33:18', 1, 1, NULL, NULL),
+(25, 'Mariana C', 'marianacabbel@gmail.com', '$2y$10$8u4KXT5.uHhh9fBwk669U.AIKHI.DO3DJT6XjqdaucFMH75JcAwca', 'prospecto', '9993895484', '2026-05-11 22:06:04', 1, 1, NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -339,13 +346,13 @@ ALTER TABLE `habitaciones`
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `reservaciones`
 --
 ALTER TABLE `reservaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios`
@@ -357,7 +364,7 @@ ALTER TABLE `servicios`
 -- AUTO_INCREMENT de la tabla `sesiones`
 --
 ALTER TABLE `sesiones`
-  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `tokens_recuperacion`
@@ -369,7 +376,7 @@ ALTER TABLE `tokens_recuperacion`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Restricciones para tablas volcadas
