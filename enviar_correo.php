@@ -325,4 +325,93 @@ function plantillaRecuperacion(string $nombre, string $enlace): string
     </body>
     </html>";
 }
+
+
+/**
+ * Genera el HTML del correo de confirmación de cancelación de reservación.
+ *
+ * @param string $nombre Nombre del usuario
+ * @param int $id_reservacion ID de la reservación cancelada
+ * @param string $fecha_llegada Fecha de llegada para la reservación
+ * @param string $habitacion Habitación reservada
+ * @return string        HTML listo para enviar
+ */
+function plantillaCancelacionReservacion(
+    string $nombre,
+    int    $id_reservacion,
+    string $fecha_llegada,
+    string $habitacion
+): string {
+    $fecha_fmt = date('d/m/Y', strtotime($fecha_llegada));
+
+    return "
+    <!DOCTYPE html>
+    <html lang='es'>
+    <head><meta charset='UTF-8'><meta name='viewport' content='width=device-width'></head>
+    <body style='margin:0;padding:0;background:#f4f4f4;font-family:Georgia,serif;'>
+      <table width='100%' cellpadding='0' cellspacing='0'>
+        <tr><td align='center' style='padding:40px 16px;'>
+          <table width='560' cellpadding='0' cellspacing='0'
+                 style='background:#fff;border-radius:12px;overflow:hidden;
+                        box-shadow:0 4px 24px rgba(0,0,0,.08);'>
+            <tr>
+              <td style='background:#1a3a2a;padding:32px 40px;text-align:center;'>
+                <h1 style='margin:0;color:#c8a96e;font-size:22px;letter-spacing:2px;
+                           text-transform:uppercase;'>Hotel Refugio del Valle</h1>
+              </td>
+            </tr>
+            <tr>
+              <td style='padding:40px;color:#333;'>
+                <h2 style='margin:0 0 16px;color:#c0392b;font-size:20px;'>
+                  Reservación cancelada
+                </h2>
+                <p style='margin:0 0 24px;line-height:1.7;color:#555;'>
+                  Hola <strong>{$nombre}</strong>, te confirmamos que tu reservación
+                  ha sido cancelada exitosamente.
+                </p>
+                <div style='background:#fdecea;border-left:4px solid #c0392b;
+                            padding:16px;margin:24px 0;border-radius:4px;'>
+                  <p style='margin:0 0 6px;font-size:12px;color:#999;
+                            text-transform:uppercase;letter-spacing:1px;'>
+                    Reservación cancelada
+                  </p>
+                  <p style='margin:0;font-size:22px;font-weight:bold;color:#c0392b;'>
+                    #{$id_reservacion}
+                  </p>
+                </div>
+                <table width='100%' cellpadding='0' cellspacing='0'
+                       style='font-size:14px;color:#555;margin:16px 0;'>
+                  <tr>
+                    <td style='padding:8px 0;border-bottom:1px solid #eee;'>
+                      <strong>Habitación:</strong>
+                    </td>
+                    <td style='padding:8px 0;border-bottom:1px solid #eee;
+                                text-align:right;'>{$habitacion}</td>
+                  </tr>
+                  <tr>
+                    <td style='padding:8px 0;'><strong>Fecha de llegada:</strong></td>
+                    <td style='padding:8px 0;text-align:right;'>{$fecha_fmt}</td>
+                  </tr>
+                </table>
+                <p style='margin:24px 0 0;font-size:13px;color:#999;line-height:1.6;'>
+                  Si tienes alguna duda o crees que esto fue un error, comunícate con
+                  nosotros a
+                  <a href='mailto:hotelrefugiodelvalle@gmail.com'
+                     style='color:#1a3a2a;'>hotelrefugiodelvalle@gmail.com</a>.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td style='background:#f9f9f9;padding:20px 40px;text-align:center;
+                         font-size:12px;color:#aaa;border-top:1px solid #eee;'>
+                &copy; " . date('Y') . " Hotel Refugio del Valle · Mérida, Yucatán
+              </td>
+            </tr>
+          </table>
+        </td></tr>
+      </table>
+    </body>
+    </html>";
+}
+
 ?>
