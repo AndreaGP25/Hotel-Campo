@@ -14,8 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pass       = $_POST['new_password'];
     $confirm    = $_POST['confirm_password'];
 
-    if (strlen($pass) < 8) {
-        die("Error: La contraseña debe tener al menos 8 caracteres.");
+    if (!passwordSegura($pass)) {
+        die("Error: La contraseña debe tener al menos 8 caracteres, incluir una mayúscula, un número, un carácter especial y no contener espacios.");
     }
 
     if ($pass !== $confirm) {
@@ -57,5 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     header("Location: sesiones.php");
+}
+
+function passwordSegura(string $password): bool {
+    return strlen($password) >= 8 &&
+           preg_match('/[A-Z]/', $password) &&
+           preg_match('/\d/', $password) &&
+           preg_match('/[!@#$%^&*()_+\-=[\]{};:\'"\\|,.<>\/?]/', $password) &&
+           !preg_match('/\s/', $password);
 }
 ?>
