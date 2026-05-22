@@ -38,3 +38,4 @@ El sistema permite a los usuarios ver las habitaciones disponibles, realizar res
 | HotelRefugioValle_1.1.1| 14/05/2026           |
 | HotelRefugioValle_1.2.0| 17/05/2026           |
 | HotelRefugioValle_1.2.1| 19/05/2026           |
+| HotelRefugioValle_1.2.2| 21/05/2026           |
