@@ -1,5 +1,9 @@
 <?php
+<<<<<<< Updated upstream
 include 'config/config.inc.php';
+=======
+include 'config.inc.php';
+>>>>>>> Stashed changes
 include 'enviar_correo.php';
 
 // Verificar el estado de la sesión
