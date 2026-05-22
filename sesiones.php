@@ -69,12 +69,19 @@ $mensaje_error = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : "";
                     
                     <input type="email" name="email" placeholder="Correo Electrónico" required>
                     
-                    <div style="width: 100%;">
-                        <input type="password" name="password" id="pass1" placeholder="Contraseña (mín. 8 caracteres)" 
+                    <div style="width: 100%; position: relative;">
+                        <input type="password" name="password" id="pass1" placeholder="Contraseña" 
                             minlength="8" title="Ingresar 8 caracteres como mínimo" required>
                         <small id="alert-min" style="color: #666; display: block; font-size: 11px; text-align: left; margin-top: -10px; margin-bottom: 10px;">
-                            Ingresar 8 caracteres como mínimo
+                            La contraseña debe tener al menos 8 caracteres, una mayúscula, un número, un carácter especial y no contener espacios.
                         </small>
+                        <ul id="password-requisitos" style="list-style:none; padding-left: 0; margin-top: 8px; font-size: 11px; color: #666; text-align: left;">
+                            <li id="req-length" style="margin-bottom: 4px;">❌ Mínimo 8 caracteres</li>
+                            <li id="req-uppercase" style="margin-bottom: 4px;">❌ Al menos una letra mayúscula</li>
+                            <li id="req-digit" style="margin-bottom: 4px;">❌ Al menos un número</li>
+                            <li id="req-special" style="margin-bottom: 4px;">❌ Al menos un carácter especial</li>
+                            <li id="req-nospace" style="margin-bottom: 4px;">❌ No usar espacios</li>
+                        </ul>
                     </div>
 
                     <div style="width: 100%;">
@@ -108,14 +115,54 @@ $mensaje_error = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : "";
     <script src="js/script_inicio.js"></script>
     
     <script>
-        //Script de validación en tiempo real para contraseñas
         const p1 = document.getElementById('pass1');
         const p2 = document.getElementById('pass2');
         const alertMatch = document.getElementById('alert-match');
-        const btnReg = document.getElementById('boton-registro');
+        const formRegistro = document.getElementById('form-registro');
+        const reqLength = document.getElementById('req-length');
+        const reqUppercase = document.getElementById('req-uppercase');
+        const reqDigit = document.getElementById('req-digit');
+        const reqSpecial = document.getElementById('req-special');
+        const reqNoSpace = document.getElementById('req-nospace');
 
-        function validar() {
-            if (p2.value === "") {
+        function passwordSegura(password) {
+            return password.length >= 8 &&
+                /[A-Z]/.test(password) &&
+                /\d/.test(password) &&
+                /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>\/?]/.test(password) &&
+                !/\s/.test(password);
+        }
+
+        function actualizarRequisitos() {
+            if (!p1) return;
+            const value = p1.value;
+            const longitud = value.length >= 8;
+            const mayuscula = /[A-Z]/.test(value);
+            const digito = /\d/.test(value);
+            const especial = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>\/?]/.test(value);
+            const sinEspacios = !/\s/.test(value);
+
+            reqLength.textContent = (longitud ? '✓' : '❌') + ' Mínimo 8 caracteres';
+            reqLength.style.color = longitud ? '#2e7d32' : '#666';
+            reqUppercase.textContent = (mayuscula ? '✓' : '❌') + ' Al menos una letra mayúscula';
+            reqUppercase.style.color = mayuscula ? '#2e7d32' : '#666';
+            reqDigit.textContent = (digito ? '✓' : '❌') + ' Al menos un número';
+            reqDigit.style.color = digito ? '#2e7d32' : '#666';
+            reqSpecial.textContent = (especial ? '✓' : '❌') + ' Al menos un carácter especial';
+            reqSpecial.style.color = especial ? '#2e7d32' : '#666';
+            reqNoSpace.textContent = (sinEspacios ? '✓' : '❌') + ' No usar espacios';
+            reqNoSpace.style.color = sinEspacios ? '#2e7d32' : '#666';
+
+            if (p1) {
+                p1.style.borderColor = passwordSegura(value) ? '#2e7d32' : '#ccc';
+            }
+        }
+
+        function validarContrasena() {
+            if (!p1 || !p2) return;
+            actualizarRequisitos();
+
+            if (p2.value === '') {
                 alertMatch.style.display = 'none';
                 p2.style.borderColor = '#ccc';
             } else if (p1.value !== p2.value) {
@@ -127,15 +174,26 @@ $mensaje_error = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : "";
             }
         }
 
-        p1.addEventListener('input', validar);
-        p2.addEventListener('input', validar);
+        if (p1) {
+            p1.addEventListener('input', validarContrasena);
+        }
+        if (p2) {
+            p2.addEventListener('input', validarContrasena);
+        }
 
-        document.getElementById('form-registro').addEventListener('submit', function(e) {
-            if (p1.value !== p2.value) {
-                e.preventDefault();
-                alert("Las contraseñas deben coincidir para continuar.");
-            }
-        });
+        if (formRegistro) {
+            formRegistro.addEventListener('submit', function(e) {
+                if (!passwordSegura(p1.value)) {
+                    e.preventDefault();
+                    alert('La contraseña debe cumplir todos los requisitos de seguridad antes de registrarse.');
+                    return;
+                }
+                if (p1.value !== p2.value) {
+                    e.preventDefault();
+                    alert('Las contraseñas deben coincidir para continuar.');
+                }
+            });
+        }
     </script>
 </body>
 

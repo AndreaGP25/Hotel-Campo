@@ -102,16 +102,114 @@ if (isset($_GET['token'])) {
             <img src="https://cdn-icons-png.flaticon.com/512/6195/6195699.png" class="llave-icono">
             <h2>Nueva contraseña</h2>
             <p style="color: #666; font-size: 14px;">Elige una contraseña segura para tu cuenta.</p>
-            <form action="procesar_cambio.php" method="POST">
-                <input type="password" name="new_password" placeholder="Nueva contraseña" required 
+            <form action="procesar_cambio.php" method="POST" id="form-cambio-password">
+                <input type="password" name="new_password" id="new_password" placeholder="Nueva contraseña" required 
                        style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-top: 15px; box-sizing: border-box;">
-                <p style="font-size: 11px; color: #999; text-align: left; margin: 5px 0 15px;">Mínimo 8 caracteres. Más segura con mayúsculas, números y símbolos.</p>
-                <input type="password" name="confirm_password" placeholder="Confirmar contraseña" required 
+                <small id="reset-alert-min" style="color: #666; display: block; font-size: 11px; text-align: left; margin: 5px 0 10px;">
+                    La contraseña debe tener al menos 8 caracteres, una mayúscula, un número, un carácter especial y no contener espacios.
+                </small>
+                <ul id="reset-password-requisitos" style="list-style:none; padding-left: 0; margin-top: 0; font-size: 11px; color: #666; text-align: left; margin-bottom: 15px;">
+                    <li id="reset-req-length" style="margin-bottom: 4px;">❌ Mínimo 8 caracteres</li>
+                    <li id="reset-req-uppercase" style="margin-bottom: 4px;">❌ Al menos una letra mayúscula</li>
+                    <li id="reset-req-digit" style="margin-bottom: 4px;">❌ Al menos un número</li>
+                    <li id="reset-req-special" style="margin-bottom: 4px;">❌ Al menos un carácter especial</li>
+                    <li id="reset-req-nospace" style="margin-bottom: 4px;">❌ No usar espacios</li>
+                </ul>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmar contraseña" required 
                        style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;">
+                <small id="reset-alert-match" style="color: red; display: none; font-size: 11px; text-align: left; margin-top: 8px; margin-bottom: 10px;">
+                    Las contraseñas no coinciden
+                </small>
                 <button type="submit" class="btn-dorado">GUARDAR NUEVA CONTRASEÑA</button>
             </form>
         <?php endif; ?>
     </div>
 
+    <script>
+        const newPassword = document.getElementById('new_password');
+        const confirmPassword = document.getElementById('confirm_password');
+        const resetAlertMatch = document.getElementById('reset-alert-match');
+        const resetReqLength = document.getElementById('reset-req-length');
+        const resetReqUppercase = document.getElementById('reset-req-uppercase');
+        const resetReqDigit = document.getElementById('reset-req-digit');
+        const resetReqSpecial = document.getElementById('reset-req-special');
+        const resetReqNoSpace = document.getElementById('reset-req-nospace');
+        const formCambio = document.getElementById('form-cambio-password');
+
+        function passwordSegura(password) {
+            return password.length >= 8 &&
+                /[A-Z]/.test(password) &&
+                /\d/.test(password) &&
+                /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>\/?]/.test(password) &&
+                !/\s/.test(password);
+        }
+
+        function actualizarResetRequisitos() {
+            if (!newPassword) return;
+            const value = newPassword.value;
+            const longitud = value.length >= 8;
+            const mayuscula = /[A-Z]/.test(value);
+            const digito = /\d/.test(value);
+            const especial = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>\/?]/.test(value);
+            const sinEspacios = !/\s/.test(value);
+
+            resetReqLength.textContent = (longitud ? '✓' : '❌') + ' Mínimo 8 caracteres';
+            resetReqLength.style.color = longitud ? '#2e7d32' : '#666';
+            resetReqUppercase.textContent = (mayuscula ? '✓' : '❌') + ' Al menos una letra mayúscula';
+            resetReqUppercase.style.color = mayuscula ? '#2e7d32' : '#666';
+            resetReqDigit.textContent = (digito ? '✓' : '❌') + ' Al menos un número';
+            resetReqDigit.style.color = digito ? '#2e7d32' : '#666';
+            resetReqSpecial.textContent = (especial ? '✓' : '❌') + ' Al menos un carácter especial';
+            resetReqSpecial.style.color = especial ? '#2e7d32' : '#666';
+            resetReqNoSpace.textContent = (sinEspacios ? '✓' : '❌') + ' No usar espacios';
+            resetReqNoSpace.style.color = sinEspacios ? '#2e7d32' : '#666';
+
+            if (newPassword) {
+                newPassword.style.borderColor = passwordSegura(value) ? '#2e7d32' : '#ccc';
+            }
+        }
+
+        function verificarCoincidencia() {
+            if (!confirmPassword || !newPassword) return;
+            if (confirmPassword.value === '') {
+                resetAlertMatch.style.display = 'none';
+                confirmPassword.style.borderColor = '#ccc';
+                return;
+            }
+
+            if (newPassword.value !== confirmPassword.value) {
+                resetAlertMatch.style.display = 'block';
+                confirmPassword.style.borderColor = 'red';
+            } else {
+                resetAlertMatch.style.display = 'none';
+                confirmPassword.style.borderColor = 'green';
+            }
+        }
+
+        if (newPassword) {
+            newPassword.addEventListener('input', function() {
+                actualizarResetRequisitos();
+                verificarCoincidencia();
+            });
+        }
+
+        if (confirmPassword) {
+            confirmPassword.addEventListener('input', verificarCoincidencia);
+        }
+
+        if (formCambio) {
+            formCambio.addEventListener('submit', function(e) {
+                if (!passwordSegura(newPassword.value)) {
+                    e.preventDefault();
+                    alert('La nueva contraseña debe cumplir todos los requisitos de seguridad.');
+                    return;
+                }
+                if (newPassword.value !== confirmPassword.value) {
+                    e.preventDefault();
+                    alert('Las contraseñas no coinciden.');
+                }
+            });
+        }
+    </script>
 </body>
 </html>

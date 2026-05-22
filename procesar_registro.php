@@ -29,8 +29,8 @@ if ($password !== $confirm_password) {
     redirigirError('Las contraseñas no coinciden.');
 }
 
-if (strlen($password) < 8) {
-    redirigirError('La contraseña debe tener al menos 8 caracteres.');
+if (!passwordSegura($password)) {
+    redirigirError('La contraseña debe tener al menos 8 caracteres, incluir una mayúscula, un número, un carácter especial y no contener espacios.');
 }
 
 // LÓGICA DE BASE DE DATOS
@@ -84,6 +84,14 @@ try {
 } catch (PDOException $e) {
     error_log('[Hotel Registro] Error BD: ' . $e->getMessage());
     redirigirError('Error técnico en el registro. Intenta más tarde.');
+}
+
+function passwordSegura(string $password): bool {
+    return strlen($password) >= 8 &&
+           preg_match('/[A-Z]/', $password) &&
+           preg_match('/\d/', $password) &&
+           preg_match('/[!@#$%^&*()_+\-=[\]{};:\'"\\|,.<>\/?]/', $password) &&
+           !preg_match('/\s/', $password);
 }
 
 function redirigirError(string $msg): void {
